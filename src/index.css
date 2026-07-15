@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* ── Rudraksha Divine Dark Theme ── */
+    /* Primary: deep mahogany */
+    --brown:        #6B2D0F;
+    --brown-light:  #8B3D1A;
+    --brown-dark:   #1A0A02;
+    /* Accent: sacred gold / amber */
+    --amber:        #C8860A;
+    --amber-light:  #E5A020;
+    --amber-pale:   #F5E6C8;
+    /* Surface / background — dark earthy */
+    --bg:           #1C0D05;
+    --surface:      #2A1408;
+    --surface-2:    #3D1F0A;
+    --surface-3:    #4A2810;
+    /* Border */
+    --border:       #5C3015;
+    --border-dark:  #7A4020;
+    /* Text */
+    --text-dark:    #F5E6C8;
+    --text-mid:     #DDB87A;
+    --text-light:   #B8895A;
+    --text-muted:   #8B6040;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #1C0D05;
+    color: #F5E6C8;
+    font-family: 'Georgia', serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #2A1408; }
+  ::-webkit-scrollbar-thumb { background: #C8860A; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #E5A020; }
+}
+
+@layer utilities {
+  .divine-gradient  { background: linear-gradient(135deg, #1A0A02, #3D1F0A); }
+  .gold-gradient    { background: linear-gradient(135deg, #C8860A, #E5A020); }
+  .text-brown       { color: #6B2D0F; }
+  .text-amber       { color: #C8860A; }
+  .bg-surface       { background-color: #2A1408; }
+  .bg-surface-2     { background-color: #3D1F0A; }
+  .border-brown     { border-color: #5C3015; }
+  .shadow-card      { box-shadow: 0 2px 16px rgba(200,134,10,0.08); }
+  .shadow-card-lg   { box-shadow: 0 8px 32px rgba(200,134,10,0.18); }
+  .shadow-gold      { box-shadow: 0 4px 24px rgba(200,134,10,0.25); }
+}
+
+@layer base {
+  button,
+  [role="button"],
+  label[for],
+  label.cursor-pointer,
+  select,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  input[type="file"]::file-selector-button {
+    cursor: pointer !important;
+  }
+}
+
+button,
+[role="button"],
+a,
+label,
+select,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="file"]::file-selector-button,
+input[type="checkbox"],
+input[type="radio"],
+summary {
+  cursor: pointer !important;
+}
