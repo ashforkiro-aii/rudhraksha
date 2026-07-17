@@ -12,6 +12,9 @@ import ScrollReveal from "../components/ScrollReveal"
 import ReviewsSection from "../components/ReviewsSection"
 import hero1Img from "../assets/hero1.png"
 
+// local fallback image used only when no hero media is set in DB
+const LOCAL_HERO_FALLBACK = hero1Img
+
 const FALLBACK_CAT_IMG = "https://images.unsplash.com/photo-1614703012479-0fe5f6a89be0?w=600&q=80"
 
 const CAT_DESC = {
@@ -32,7 +35,7 @@ const FEATURES = [
 const PX = "px-4 sm:px-6 lg:px-10 xl:px-16"
 
 /* ─── Hero ─── */
-function HeroSlider({ heroVideoUrl }) {
+function HeroSlider({ heroVideoUrl, heroBgImageUrl }) {
   const [slide, setSlide] = useState(0)
   const timerRef = useRef(null)
   const TOTAL = 3
@@ -42,14 +45,23 @@ function HeroSlider({ heroVideoUrl }) {
     return () => clearInterval(timerRef.current)
   }, [])
 
+  // loading state — both values are null until fetched
+  const stillLoading = heroVideoUrl === null || heroBgImageUrl === null
+
   return (
     <section className="relative w-full overflow-hidden" style={{ height: "clamp(360px, 52vw, 600px)" }}>
-      {heroVideoUrl === null ? (
+      {stillLoading ? (
+        /* dark placeholder while DB values load */
         <div className="absolute inset-0 bg-[#1A0A02]" />
       ) : heroVideoUrl ? (
+        /* video takes priority when set */
         <video src={heroVideoUrl} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
+      ) : heroBgImageUrl ? (
+        /* DB-sourced background image */
+        <img src={heroBgImageUrl} alt="Authentic Rudraksha - Divine Beads" className="absolute inset-0 w-full h-full object-cover object-center" />
       ) : (
-        <img src={hero1Img} alt="Authentic Rudraksha - Divine Beads" className="absolute inset-0 w-full h-full object-cover object-center" />
+        /* local asset fallback when neither is set */
+        <img src={LOCAL_HERO_FALLBACK} alt="Authentic Rudraksha - Divine Beads" className="absolute inset-0 w-full h-full object-cover object-center" />
       )}
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/25" />
@@ -134,10 +146,12 @@ export default function HomePage() {
   const [dynamicCategories, setDynamicCategories] = useState(CATEGORIES)
   const [categoryImageMap, setCategoryImageMap] = useState({})
   const [heroVideoUrl, setHeroVideoUrl] = useState(null)
+  const [heroBgImageUrl, setHeroBgImageUrl] = useState(null)
   const [features, setFeatures] = useState(FEATURES)
 
   useEffect(() => {
     getSetting("hero_video_url").then(url => setHeroVideoUrl(url || "")).catch(() => setHeroVideoUrl(""))
+    getSetting("hero_bg_image_url").then(url => setHeroBgImageUrl(url || "")).catch(() => setHeroBgImageUrl(""))
   }, [])
 
   useEffect(() => {
@@ -181,7 +195,7 @@ export default function HomePage() {
       </Helmet>
 
       {/* HERO — full viewport width */}
-      <HeroSlider heroVideoUrl={heroVideoUrl} />
+      <HeroSlider heroVideoUrl={heroVideoUrl} heroBgImageUrl={heroBgImageUrl} />
 
       {/* COLLECTIONS */}
       <section id="categories" className={`w-full py-10 bg-[#1C0D05] ${PX}`}>

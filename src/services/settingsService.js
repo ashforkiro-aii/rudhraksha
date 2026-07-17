@@ -12,6 +12,12 @@ export async function getSetting(key) {
 export async function setSetting(key, value) {
   const { error } = await supabase
     .from('site_settings')
-    .upsert({ key, value, updated_at: new Date().toISOString() })
-  if (error) throw error
+    .upsert(
+      { key, value, updated_at: new Date().toISOString() },
+      { onConflict: 'key' }
+    )
+  if (error) {
+    console.error('[setSetting] Supabase error:', error)
+    throw error
+  }
 }

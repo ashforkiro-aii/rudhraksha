@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useAdminStore } from "../../store/adminStore"
 import { motion, AnimatePresence } from "framer-motion"
-import { Plus, Trash2, Edit2, Save, ChevronUp, ChevronDown, Loader2, ImagePlus } from "lucide-react"
+import { Plus, Trash2, Edit2, Save, ChevronUp, ChevronDown, Loader2, ImagePlus, Image } from "lucide-react"
 import { getSetting, setSetting } from "../../services/settingsService"
 import { supabase } from "../../lib/supabase"
 import toast from "react-hot-toast"
@@ -226,6 +226,140 @@ function BannerForm({ initial, onSave, onCancel }) {
   )
 }
 
+/* ─── Hero Background Image Manager ─── */
+function HeroBgManager() {
+  const [imageUrl, setImageUrl] = useState("")
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const fileRef = useRef(null)
+
+  useEffect(() => {
+    getSetting("hero_bg_image_url")
+      .then(val => setImageUrl(val || ""))
+      .catch(() => setImageUrl(""))
+      .finally(() => setLoading(false))
+  }, [])
+
+  const handleUpload = async (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith("image/")) { toast.error("Please select an image file"); return }
+    if (file.size > 10 * 1024 * 1024) { toast.error("Image must be under 10MB"); return }
+    setUploading(true)
+    try {
+      const ext = file.name.split(".").pop()
+      const path = `hero/hero_bg_${Date.now()}.${ext}`
+      const { error } = await supabase.storage
+        .from("product-images")
+        .upload(path, file, { upsert: true, contentType: file.type })
+      if (error) throw error
+      const { data } = supabase.storage.from("product-images").getPublicUrl(path)
+      setImageUrl(data.publicUrl)
+      toast.success("Image uploaded! Click Save to apply.")
+    } catch (err) {
+      toast.error(err.message || "Upload failed")
+    } finally {
+      setUploading(false)
+      if (fileRef.current) fileRef.current.value = ""
+    }
+  }
+
+  const handleSave = async () => {
+    setSaving(true)
+    try {
+      await setSetting("hero_bg_image_url", imageUrl.trim())
+      toast.success("Hero background image saved!")
+    } catch (err) {
+      toast.error(err.message || "Failed to save")
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleClear = async () => {
+    setSaving(true)
+    try {
+      await setSetting("hero_bg_image_url", "")
+      setImageUrl("")
+      toast.success("Hero background cleared (will use default image)")
+    } catch (err) {
+      toast.error(err.message || "Failed to clear")
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <div className="bg-white border border-[#E5D8C8] rounded-xl p-5 space-y-4">
+      <div className="flex items-center gap-2 mb-1">
+        <Image size={18} className="text-[#5D3A1A]" />
+        <h2 className="text-base font-bold text-[#5D3A1A]" style={{ fontFamily: "Georgia, serif" }}>Hero Background Image</h2>
+      </div>
+      <p className="text-xs text-gray-500">
+        Upload or paste a URL for the hero section background image. If a hero video is also set, the video takes priority.
+      </p>
+
+      {loading ? (
+        <div className="flex items-center gap-2 text-gray-400 text-sm"><Loader2 size={14} className="animate-spin" /> Loading...</div>
+      ) : (
+        <>
+          {/* Preview */}
+          {imageUrl && (
+            <div className="relative w-full rounded-lg overflow-hidden border border-[#E5D8C8]" style={{ aspectRatio: "16/5" }}>
+              <img src={imageUrl} alt="Hero background preview" className="w-full h-full object-cover" onError={e => { e.target.style.display = "none" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+                <span className="text-white text-xs font-medium bg-black/50 px-2 py-0.5 rounded">Preview</span>
+              </div>
+            </div>
+          )}
+
+          {/* Upload */}
+          <label className="flex items-center gap-2 px-4 py-2.5 border border-dashed border-[#E5D8C8] hover:border-[#5D3A1A]/40 rounded-lg cursor-pointer transition-all bg-[#FAFAFA] w-fit">
+            <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleUpload} />
+            {uploading
+              ? <><Loader2 size={15} className="text-[#5D3A1A] animate-spin" /><span className="text-gray-500 text-sm">Uploading...</span></>
+              : <><ImagePlus size={15} className="text-[#5D3A1A]" /><span className="text-gray-500 text-sm">Upload image from device</span></>
+            }
+          </label>
+
+          {/* URL input */}
+          <div>
+            <label className={lbl}>Or paste image URL</label>
+            <input
+              value={imageUrl}
+              onChange={e => setImageUrl(e.target.value)}
+              placeholder="https://..."
+              className={inp}
+            />
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-2 pt-1">
+            <button
+              onClick={handleSave}
+              disabled={saving || uploading}
+              className="flex items-center gap-1.5 px-5 py-2 bg-[#5D3A1A] text-white font-semibold rounded-lg text-sm hover:bg-[#7A4E28] disabled:opacity-60 transition-all"
+            >
+              {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
+              Save
+            </button>
+            {imageUrl && (
+              <button
+                onClick={handleClear}
+                disabled={saving}
+                className="flex items-center gap-1.5 px-4 py-2 border border-red-300 text-red-500 rounded-lg text-sm hover:bg-red-50 disabled:opacity-60 transition-all"
+              >
+                <Trash2 size={14} /> Clear
+              </button>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
 export default function AdminBanners() {
   const [banners, setBanners] = useState([])
   const [loading, setLoading] = useState(true)
@@ -258,6 +392,9 @@ export default function AdminBanners() {
 
   return (
     <div className="space-y-5">
+      {/* ── Hero Background Image ── */}
+      <HeroBgManager />
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-[#5D3A1A]" style={{ fontFamily: "Georgia, serif" }}>Promo Banners</h1>
