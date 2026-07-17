@@ -83,7 +83,7 @@ function HeroSlider({ heroVideoUrl, heroBgImageUrl }) {
         <motion.p
           key={`p-${slide}`}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2, duration: 0.45 }}
-          className="text-[#F0DDB8] max-w-lg mb-7 leading-relaxed"
+          className="text-white max-w-lg mb-7 leading-relaxed"
           style={{ fontSize: "clamp(0.78rem, 1.4vw, 0.95rem)", textShadow: "0 1px 10px rgba(0,0,0,0.95)" }}>
           Embrace the divine power, energy, and protection with Genuinely Sourced Rudraksha Beads from Nepal &amp; India.
         </motion.p>
@@ -112,7 +112,7 @@ function HeroSlider({ heroVideoUrl, heroBgImageUrl }) {
 function SectionTitle({ text }) {
   return (
     <div className="text-center mb-8">
-      <h2 className="font-bold text-[#F5E6C8] uppercase tracking-[0.07em]"
+      <h2 className="font-bold text-white uppercase tracking-[0.07em]"
         style={{ fontFamily: "Georgia, serif", fontSize: "clamp(1rem, 2vw, 1.4rem)" }}>
         {text}
       </h2>
@@ -127,7 +127,7 @@ function SectionHeader({ label, title, link }) {
     <div className="flex items-center justify-between mb-6">
       <div>
         <p className="text-[#C8860A] text-[10px] uppercase tracking-[0.2em] mb-1 font-bold">{label}</p>
-        <h2 className="text-xl sm:text-2xl font-bold text-[#F5E6C8]" style={{ fontFamily: "Georgia, serif" }}>{title}</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: "Georgia, serif" }}>{title}</h2>
       </div>
       {link && (
         <Link to={link} className="flex items-center gap-1 text-[12px] text-[#C8860A] hover:text-[#E5A020] font-semibold transition-colors shrink-0">
@@ -217,10 +217,10 @@ export default function HomePage() {
                     }
                   </div>
                   <div className="px-3 py-3 flex flex-col flex-1">
-                    <h3 className="text-[#F5E6C8] font-bold text-[12px] sm:text-[13px] mb-1 uppercase tracking-wide leading-tight" style={{ fontFamily: "Georgia, serif" }}>
+                    <h3 className="text-white font-bold text-[12px] sm:text-[13px] mb-1 uppercase tracking-wide leading-tight" style={{ fontFamily: "Georgia, serif" }}>
                       {cat}
                     </h3>
-                    <p className="text-[#8B6040] text-[11px] leading-relaxed flex-1 mb-3">
+                    <p className="text-white/60 text-[11px] leading-relaxed flex-1 mb-3">
                       {CAT_DESC[cat] || "Authentic sacred beads"}
                     </p>
                     <span className="inline-flex items-center text-[10px] font-bold text-[#C8860A] border border-[#C8860A]/50 px-3 py-1 rounded self-start uppercase tracking-[0.1em] group-hover:bg-[#C8860A] group-hover:text-[#1A0A02] transition-all duration-300">
@@ -245,8 +245,8 @@ export default function HomePage() {
                   {f.icon || FEATURES[i % FEATURES.length].icon}
                 </div>
                 <div>
-                  <p className="text-[#F5E6C8] text-[11px] font-bold tracking-wide uppercase leading-tight">{f.title}</p>
-                  {(f.sub || f.desc) && <p className="text-[#8B6040] text-[10px] mt-0.5">{f.sub || f.desc}</p>}
+                  <p className="text-white text-[11px] font-bold tracking-wide uppercase leading-tight">{f.title}</p>
+                  {(f.sub || f.desc) && <p className="text-white/60 text-[10px] mt-0.5">{f.sub || f.desc}</p>}
                 </div>
               </div>
             ))}

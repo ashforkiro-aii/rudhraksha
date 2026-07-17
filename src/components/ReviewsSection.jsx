@@ -42,16 +42,16 @@ function ReviewCard({ review, currentUserId, onEdit, onDelete }) {
             {initials}
           </div>
           <div>
-            <p className="text-[#F5E6C8] text-sm font-semibold">{review.user_name || "Customer"}</p>
-            <p className="text-[#8B6040] text-xs">{new Date(review.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
+            <p className="text-white text-sm font-semibold">{review.user_name || "Customer"}</p>
+            <p className="text-white/60 text-xs">{new Date(review.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <StarRating value={review.rating} size={13} />
           {isOwn && (
             <div className="flex gap-1 ml-1">
-              <button onClick={() => onEdit(review)} className="text-[#B8895A] hover:text-[#C8860A] transition-colors"><Edit2 size={13} /></button>
-              <button onClick={() => onDelete(review.id)} className="text-[#B8895A] hover:text-red-400 transition-colors"><Trash2 size={13} /></button>
+              <button onClick={() => onEdit(review)} className="text-white/50 hover:text-[#C8860A] transition-colors"><Edit2 size={13} /></button>
+              <button onClick={() => onDelete(review.id)} className="text-white/50 hover:text-red-400 transition-colors"><Trash2 size={13} /></button>
             </div>
           )}
         </div>
@@ -126,12 +126,12 @@ export default function ReviewsSection() {
       {/* Header */}
       <div className="text-center mb-10">
         <p className="text-[#C8860A] text-xs uppercase tracking-[0.2em] mb-2 font-bold">What Our Customers Say</p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#F5E6C8]" style={{ fontFamily: "Georgia, serif" }}>Real Reviews</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: "Georgia, serif" }}>Real Reviews</h2>
         {avgRating && (
           <div className="flex items-center justify-center gap-2 mt-4">
             <StarRating value={Math.round(Number(avgRating))} size={20} />
             <span className="text-[#C8860A] font-bold text-xl">{avgRating}</span>
-            <span className="text-[#8B6040] text-sm">({reviews.length} review{reviews.length !== 1 ? "s" : ""})</span>
+            <span className="text-white/60 text-sm">({reviews.length} review{reviews.length !== 1 ? "s" : ""})</span>
           </div>
         )}
       </div>
@@ -161,19 +161,19 @@ export default function ReviewsSection() {
             onSubmit={handleSubmit}
             className="bg-[#2A1408] border border-[#5C3015] rounded-xl p-6 mb-8 space-y-4"
           >
-            <p className="text-[#F5E6C8] font-semibold">{editingId ? "Edit your review" : "Share your experience"}</p>
+            <p className="text-white font-semibold">{editingId ? "Edit your review" : "Share your experience"}</p>
             <div>
-              <p className="text-[#B8895A] text-xs mb-2 font-medium uppercase tracking-wide">Your Rating</p>
+              <p className="text-white/50 text-xs mb-2 font-medium uppercase tracking-wide">Your Rating</p>
               <StarRating value={rating} onChange={setRating} size={26} />
             </div>
             <div>
-              <p className="text-[#B8895A] text-xs mb-2 font-medium uppercase tracking-wide">Your Review</p>
+              <p className="text-white/50 text-xs mb-2 font-medium uppercase tracking-wide">Your Review</p>
               <textarea
                 value={comment}
                 onChange={e => setComment(e.target.value)}
                 placeholder="Tell us about your experience..."
                 rows={3}
-                className="w-full bg-[#1A0A02] border border-[#5C3015] rounded-lg px-3 py-2.5 text-sm text-[#F5E6C8] placeholder-[#8B6040] focus:outline-none focus:border-[#C8860A] resize-none transition-colors"
+                className="w-full bg-[#1A0A02] border border-[#5C3015] rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#C8860A] resize-none transition-colors"
               />
             </div>
             <div className="flex gap-3">
@@ -196,7 +196,7 @@ export default function ReviewsSection() {
           {[1, 2, 3].map(i => <div key={i} className="bg-[#2A1408] border border-[#5C3015] rounded-xl p-4 h-28 animate-pulse" />)}
         </div>
       ) : reviews.length === 0 ? (
-        <p className="text-center text-[#8B6040] py-10">No reviews yet. Be the first!</p>
+        <p className="text-center text-white/60 py-10">No reviews yet. Be the first!</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {reviews.map(r => (

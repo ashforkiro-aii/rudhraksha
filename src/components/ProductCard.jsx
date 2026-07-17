@@ -1,4 +1,4 @@
-﻿import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Heart, ShoppingCart, ArrowRight, CheckCircle, MapPin, Sparkles } from 'lucide-react'
 import { useAuthStore } from '../store/authStore'
@@ -45,7 +45,7 @@ function TagBadges({ tags }) {
   )
 }
 
-/* ─── GRID CARD ─────────────────────────────────────────── */
+/* --- GRID CARD ------------------------------------------- */
 function GridCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
   const media = product.images?.[0] || FALLBACK_IMG
   const mediaIsVideo = isVideo(media)
@@ -75,7 +75,7 @@ function GridCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
           {/* Out of stock overlay */}
           {product.stock === 0 && (
             <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-              <span className="text-[#F5E6C8] text-xs font-semibold bg-[#2A1408] px-3 py-1 rounded-full border border-[#5C3015] shadow-sm">Out of Stock</span>
+              <span className="text-white text-xs font-semibold bg-[#2A1408] px-3 py-1 rounded-full border border-[#5C3015] shadow-sm">Out of Stock</span>
             </div>
           )}
 
@@ -106,7 +106,7 @@ function GridCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
         {/* Info */}
         <div className="p-3 flex flex-col flex-1">
           <p className="text-[10px] text-[#C8860A] mb-1 uppercase tracking-widest font-semibold">{product.category}</p>
-          <h3 className="text-[#F5E6C8] text-sm font-semibold line-clamp-2 mb-2 group-hover:text-[#C8860A] transition-colors leading-snug flex-1">
+          <h3 className="text-white text-sm font-semibold line-clamp-2 mb-2 group-hover:text-[#C8860A] transition-colors leading-snug flex-1">
             {product.name}
           </h3>
 
@@ -119,7 +119,7 @@ function GridCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
           <div className="flex items-center gap-2 mt-auto">
             <span className="text-[#E5A020] font-bold text-base">{formatINR(product.price)}</span>
             {comparePrice && comparePrice > product.price && (
-              <span className="text-[#8B6040] text-xs line-through">{formatINR(comparePrice)}</span>
+              <span className="text-white/60 text-xs line-through">{formatINR(comparePrice)}</span>
             )}
           </div>
         </div>
@@ -140,7 +140,7 @@ function GridCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
   )
 }
 
-/* ─── LIST CARD ─────────────────────────────────────────── */
+/* --- LIST CARD ------------------------------------------- */
 function ListCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
   const media = product.images?.[0] || FALLBACK_IMG
   const mediaIsVideo = isVideo(media)
@@ -169,7 +169,7 @@ function ListCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
             )}
             {product.stock === 0 && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                <span className="text-[8px] font-bold text-[#F5E6C8] bg-[#2A1408] px-1.5 py-0.5 rounded-full border border-[#5C3015]">OOS</span>
+                <span className="text-[8px] font-bold text-white bg-[#2A1408] px-1.5 py-0.5 rounded-full border border-[#5C3015]">OOS</span>
               </div>
             )}
           </div>
@@ -178,7 +178,7 @@ function ListCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
           <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
             <div className="flex items-center gap-2 mb-0.5">
               {product.custom_id && (
-                <span className="font-mono text-[10px] text-[#B8895A] bg-[#1A0A02] px-1.5 py-0.5 rounded border border-[#5C3015]">
+                <span className="font-mono text-[10px] text-white/50 bg-[#1A0A02] px-1.5 py-0.5 rounded border border-[#5C3015]">
                   {product.custom_id}
                 </span>
               )}
@@ -187,12 +187,12 @@ function ListCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
               </span>
             </div>
 
-            <h3 className="text-[#F5E6C8] text-sm font-bold line-clamp-2 group-hover:text-[#C8860A] transition-colors leading-tight mb-1">
+            <h3 className="text-white text-sm font-bold line-clamp-2 group-hover:text-[#C8860A] transition-colors leading-tight mb-1">
               {product.name}
             </h3>
 
             {product.size && (
-              <p className="text-[#B8895A] text-[11px] mb-1">Size: <span className="font-medium text-[#DDB87A]">{product.size} mm</span></p>
+              <p className="text-white/50 text-[11px] mb-1">Size: <span className="font-medium text-[#DDB87A]">{product.size} mm</span></p>
             )}
 
             <TagBadges tags={product.tags} />
@@ -200,7 +200,7 @@ function ListCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
             <div className="flex items-center gap-3 mt-1.5">
               <span className="text-[#E5A020] font-bold text-base leading-none">{formatINR(product.price)}</span>
               {comparePrice && comparePrice > product.price && (
-                <span className="text-[#8B6040] text-xs line-through">{formatINR(comparePrice)}</span>
+                <span className="text-white/60 text-xs line-through">{formatINR(comparePrice)}</span>
               )}
               <DiscountBadge original={comparePrice} current={product.price} />
               <span className={`flex items-center gap-1 text-[10px] font-semibold ml-auto ${inStock ? 'text-green-400' : 'text-red-400'}`}>
@@ -213,7 +213,7 @@ function ListCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
           {/* Right side: wishlist + cart */}
           <div className="flex-shrink-0 flex flex-col items-center justify-between py-0.5 gap-2 pl-1">
             <button onClick={onWishlist}
-              className={`p-1.5 rounded-full transition-all ${wishlisted ? 'bg-red-900/40 text-red-400' : 'text-[#B8895A] hover:text-red-400 hover:bg-red-900/20'}`}>
+              className={`p-1.5 rounded-full transition-all ${wishlisted ? 'bg-red-900/40 text-red-400' : 'text-white/50 hover:text-red-400 hover:bg-red-900/20'}`}>
               <Heart size={15} fill={wishlisted ? 'currentColor' : 'none'} />
             </button>
             <button onClick={onAddToCart} disabled={product.stock === 0}
@@ -231,7 +231,7 @@ function ListCard({ product, inCart, wishlisted, onAddToCart, onWishlist }) {
   )
 }
 
-/* ─── MAIN EXPORT ───────────────────────────────────────── */
+/* --- MAIN EXPORT ----------------------------------------- */
 export default function ProductCard({ product, layout = 'grid' }) {
   const { user } = useAuthStore()
   const { addToCart, items } = useCartStore()
