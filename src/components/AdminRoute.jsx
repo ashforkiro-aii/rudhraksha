@@ -11,6 +11,7 @@ const ADMIN_EMAILS = [
   "ssbmanogna@gmail.com",
   "sivasri3545@gmail.com",
   "ashforkiro@gmail.com",
+  "aswaniasshu11@gmail.com",
 ]
 
 export const isAdmin = (user) => {
