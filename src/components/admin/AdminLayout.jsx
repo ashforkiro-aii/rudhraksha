@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import {
   LayoutDashboard, Package, ShoppingBag, BarChart3, Users, Bell, Menu, X,
   LogOut, ChevronRight, AlertTriangle, Store, Image, Tag, Ticket,
-  TrendingUp, Clock, AlertCircle
+  TrendingUp, Clock, AlertCircle, Info
 } from "lucide-react"
 import { useAuthStore } from "../../store/authStore"
 import { useAdminStore } from "../../store/adminStore"
@@ -18,6 +18,7 @@ const NAV = [
   { path: "/admin/categories", label: "Categories", icon: Tag },
   { path: "/admin/promo-codes", label: "Promo Codes", icon: Ticket },
   { path: "/admin/banners", label: "Banners", icon: Image },
+  { path: "/admin/about", label: "About Section", icon: Info },
   { path: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { path: "/admin/users", label: "Users", icon: Users },
 ]

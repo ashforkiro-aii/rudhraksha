@@ -36,6 +36,7 @@ const AdminUsers = lazy(() => import('./pages/admin/AdminUsers'))
 const AdminBanners = lazy(() => import('./pages/admin/AdminBanners'))
 const AdminCategories = lazy(() => import('./pages/admin/AdminCategories'))
 const AdminPromoCodes = lazy(() => import('./pages/admin/AdminPromoCodes'))
+const AdminAbout = lazy(() => import('./pages/admin/AdminAbout'))
 
 const PageLoader = () => (
   <div className="min-h-[60vh] flex items-center justify-center" style={{ background: "#EAE0D3" }}>
@@ -87,6 +88,7 @@ export default function App() {
                       <Route path="promo-codes" element={<AdminPromoCodes />} />
                       <Route path="analytics" element={<AdminAnalytics />} />
                       <Route path="users" element={<AdminUsers />} />
+                      <Route path="about" element={<AdminAbout />} />
                     </Routes>
                   </Suspense>
                 </ErrorBoundary>

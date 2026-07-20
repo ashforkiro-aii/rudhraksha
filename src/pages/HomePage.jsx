@@ -85,11 +85,30 @@ function HeroSlider({ heroVideoUrl, heroBgImageUrl }) {
 
 /* ─── About Section ─── */
 function AboutSection() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
+  const [dbData, setDbData] = useState(null)
+
+  useEffect(() => {
+    const key = lang === "te" ? "about_section_te" : "about_section_en"
+    getSetting(key).then(val => {
+      if (val) { try { setDbData(JSON.parse(val)) } catch {} }
+    }).catch(() => {})
+  }, [lang])
+
+  // Use DB data if available, fall back to translation strings
+  const d = dbData || {
+    title: t.aboutTitle, subtitle: t.aboutSubtitle,
+    p1: t.aboutP1, p2: t.aboutP2, p3: t.aboutP3,
+    p4: t.aboutP4, p5: t.aboutP5, p6: t.aboutP6,
+    years: t.aboutYears, yearsLabel: t.aboutYearsLabel,
+    authentic: t.aboutAuthentic, authenticLabel: t.aboutAuthenticLabel,
+    customers: t.aboutCustomers, customersLabel: t.aboutCustomersLabel,
+  }
+
   const stats = [
-    { value: t.aboutYears, label: t.aboutYearsLabel, icon: <Award size={22} /> },
-    { value: t.aboutAuthentic, label: t.aboutAuthenticLabel, icon: <CheckCircle size={22} /> },
-    { value: t.aboutCustomers, label: t.aboutCustomersLabel, icon: <Users size={22} /> },
+    { value: d.years, label: d.yearsLabel, icon: <Award size={22} /> },
+    { value: d.authentic, label: d.authenticLabel, icon: <CheckCircle size={22} /> },
+    { value: d.customers, label: d.customersLabel, icon: <Users size={22} /> },
   ]
   return (
     <section className={`w-full py-14 ${PX}`} style={{ background: "#F2EAE0" }}>
@@ -103,10 +122,10 @@ function AboutSection() {
           <div className="text-center mb-2">
             <h2 className="font-bold uppercase tracking-[0.06em] inline-block"
               style={{ fontFamily: "Cinzel, serif", fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)", color: "#734129" }}>
-              {t.aboutTitle}
+              {d.title}
             </h2>
             <span className="block text-sm mt-1 font-semibold" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>
-              {t.aboutSubtitle}
+              {d.subtitle}
             </span>
           </div>
           <div className="divider-carved w-24 mx-auto mb-8" />
@@ -114,7 +133,7 @@ function AboutSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             {/* Text content */}
             <div className="space-y-4">
-              {[t.aboutP1, t.aboutP2, t.aboutP3, t.aboutP4, t.aboutP5, t.aboutP6].map((para, i) => (
+              {[d.p1, d.p2, d.p3, d.p4, d.p5, d.p6].map((para, i) => (
                 <p key={i} className="leading-relaxed text-sm sm:text-base"
                   style={{ color: "#A67560", fontFamily: "Lato, sans-serif", lineHeight: "1.8" }}>
                   {i === 0 && <span className="float-left text-5xl font-bold mr-2 mt-1 leading-none" style={{ color: "#FABE1A", fontFamily: "Cinzel, serif" }}>D</span>}
@@ -131,10 +150,10 @@ function AboutSection() {
                 <div className="relative z-10">
                   <div className="text-4xl mb-3">ॐ</div>
                   <p className="font-bold text-lg mb-1" style={{ color: "#734129", fontFamily: "Cinzel, serif" }}>
-                    {t.aboutTitle}
+                    {d.title}
                   </p>
                   <p className="text-xs tracking-widest uppercase" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>
-                    {t.aboutSubtitle}
+                    {d.subtitle}
                   </p>
                   <div className="divider-carved my-4" />
                   <div className="flex items-center justify-center gap-1">
