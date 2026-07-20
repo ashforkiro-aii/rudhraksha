@@ -96,7 +96,7 @@ export default function ProductsPage() {
   const totalPages = Math.ceil(products.length / pageSize)
   const pagedProducts = products.slice((page - 1) * pageSize, page * pageSize)
 
-  const pageTitle = category ? `${category} – Rudhraksha Store` : 'All Rudraksha – Rudhraksha Store'
+  const pageTitle = category ? `${category} ï¿½ Rudhraksha Store` : 'All Rudraksha ï¿½ Rudhraksha Store'
   const headingText = category || 'All Rudraksha'
 
   return (
@@ -124,7 +124,7 @@ export default function ProductsPage() {
           <div className="flex items-center gap-2 flex-shrink-0 mt-1">
             {/* Result count */}
             <span className="text-[#8B6A4A] text-xs hidden sm:block">
-              {loading ? '…' : `${products.length} item${products.length !== 1 ? 's' : ''}`}
+              {loading ? 'ï¿½' : `${products.length} item${products.length !== 1 ? 's' : ''}`}
             </span>
 
             {/* View toggle */}
@@ -230,7 +230,7 @@ export default function ProductsPage() {
         {/* -- MAIN LAYOUT: sidebar (desktop) + content -- */}
         <div className="flex gap-6">
 
-          {/* Sticky sidebar — desktop only */}
+          {/* Sticky sidebar ï¿½ desktop only */}
           <aside className="hidden lg:block w-[220px] flex-shrink-0">
             <div className="sticky top-20 bg-white rounded-2xl border border-[#E5D8C8] overflow-hidden shadow-sm">
               <div className="px-4 py-3 bg-[#5D3A1A] text-white">
@@ -247,7 +247,7 @@ export default function ProductsPage() {
                 >
                   <span>All</span>
                   <span className="text-[10px] text-[#8B6A4A] bg-[#F5F0EB] px-1.5 py-0.5 rounded-full">
-                    {loading ? '…' : products.length}
+                    {loading ? 'ï¿½' : products.length}
                   </span>
                 </button>
                 {categories.map(cat => {
@@ -285,7 +285,7 @@ export default function ProductsPage() {
             {!loading && products.length > 0 && (
               <div className="flex items-center justify-between mb-4">
                 <p className="text-[#8B6A4A] text-xs">
-                  Showing <span className="text-[#4B3420] font-medium">{(page - 1) * pageSize + 1}–{Math.min(page * pageSize, products.length)}</span> of <span className="text-[#4B3420] font-medium">{products.length}</span>
+                  Showing <span className="text-[#4B3420] font-medium">{(page - 1) * pageSize + 1}ï¿½{Math.min(page * pageSize, products.length)}</span> of <span className="text-[#4B3420] font-medium">{products.length}</span>
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="text-[#8B6A4A] text-xs hidden sm:block">Per page:</span>
@@ -376,13 +376,13 @@ export default function ProductsPage() {
                     {Array.from({ length: totalPages }, (_, i) => i + 1)
                       .filter(p => p === 1 || p === totalPages || Math.abs(p - page) <= 2)
                       .reduce((acc, p, idx, arr) => {
-                        if (idx > 0 && p - arr[idx - 1] > 1) acc.push('…')
+                        if (idx > 0 && p - arr[idx - 1] > 1) acc.push('ï¿½')
                         acc.push(p)
                         return acc
                       }, [])
                       .map((p, idx) =>
-                        p === '…'
-                          ? <span key={`ellipsis-${idx}`} className="text-[#8B6A4A] text-xs px-1">…</span>
+                        p === 'ï¿½'
+                          ? <span key={`ellipsis-${idx}`} className="text-[#8B6A4A] text-xs px-1">ï¿½</span>
                           : (
                             <button
                               key={p}

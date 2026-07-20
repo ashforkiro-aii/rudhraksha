@@ -1,30 +1,43 @@
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../data/products'
 import { Mail, Phone, Clock } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Footer() {
+  const { t } = useLanguage()
   return (
-    <footer className="bg-[#0F0501] border-t border-[#5C3015] text-white mt-16">
+    <footer style={{ background: "#3D1F0A", borderTop: "2px solid #C5B5A5" }} className="mt-16">
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-16 py-14">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="text-[#C8860A] text-xl font-bold mb-3" style={{ fontFamily: 'Georgia, serif' }}>?? Rudhraksha Divine</h3>
-            <p className="text-white/50 text-sm leading-relaxed mb-4">Authentic certified Rudraksha beads sourced directly from Nepal & Java. Divine energy, genuine quality.</p>
-            <div className="space-y-2 text-sm text-white/50">
-              <div className="flex items-center gap-2"><Mail size={13} className="text-[#C8860A]" /> rudhraksha@gmail.com</div>
-              <div className="flex items-center gap-2"><Phone size={13} className="text-[#C8860A]" /> +91 863 900 6849</div>
-              <div className="flex items-center gap-2"><Clock size={13} className="text-[#C8860A]" /> MonñSat, 10amñ7pm</div>
+            <h3 className="text-xl font-bold mb-3" style={{ fontFamily: 'Cinzel, serif', color: "#FABE1A" }}>
+              ‡•ê Rudhraksha Divine
+            </h3>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "#D4C4B4" }}>
+              {t.footerTagline}
+            </p>
+            <div className="space-y-2 text-sm" style={{ color: "#D4C4B4" }}>
+              <div className="flex items-center gap-2"><Mail size={13} style={{ color: "#FABE1A" }} /> rudhraksha@gmail.com</div>
+              <div className="flex items-center gap-2"><Phone size={13} style={{ color: "#FABE1A" }} /> +91 863 900 6849</div>
+              <div className="flex items-center gap-2"><Clock size={13} style={{ color: "#FABE1A" }} /> Mon‚ÄìSat, 10am‚Äì7pm</div>
             </div>
           </div>
 
           {/* Categories */}
           <div>
-            <h4 className="text-[#E5A020] text-sm font-semibold mb-3 uppercase tracking-wider">Collections</h4>
+            <h4 className="text-sm font-semibold mb-3 uppercase tracking-wider" style={{ color: "#FABE1A" }}>{t.footerCollections}</h4>
             <ul className="space-y-2">
               {CATEGORIES.slice(0, 6).map(cat => (
                 <li key={cat}>
-                  <Link to={`/products?category=${encodeURIComponent(cat)}`} className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">{cat}</Link>
+                  <Link to={`/products?category=${encodeURIComponent(cat)}`}
+                    className="text-sm transition-colors"
+                    style={{ color: "#D4C4B4" }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#FABE1A"}
+                    onMouseLeave={e => e.currentTarget.style.color = "#D4C4B4"}>
+                    {cat}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -32,34 +45,63 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-[#E5A020] text-sm font-semibold mb-3 uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-sm font-semibold mb-3 uppercase tracking-wider" style={{ color: "#FABE1A" }}>{t.footerQuickLinks}</h4>
             <ul className="space-y-2">
-              <li><Link to="/products" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">Shop</Link></li>
-              <li><Link to="/orders" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">My Orders</Link></li>
-              <li><Link to="/profile" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">My Account</Link></li>
-              <li><Link to="/wishlist" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">Wishlist</Link></li>
-              <li><Link to="/cart" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">Cart</Link></li>
+              {[
+                { to: "/products", label: t.footerShop },
+                { to: "/orders", label: t.myOrders },
+                { to: "/profile", label: t.footerAccount },
+                { to: "/wishlist", label: t.wishlist },
+                { to: "/cart", label: t.footerCart },
+              ].map(item => (
+                <li key={item.to}>
+                  <Link to={item.to} className="text-sm transition-colors" style={{ color: "#D4C4B4" }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#FABE1A"}
+                    onMouseLeave={e => e.currentTarget.style.color = "#D4C4B4"}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Help */}
           <div>
-            <h4 className="text-[#E5A020] text-sm font-semibold mb-3 uppercase tracking-wider">Help</h4>
+            <h4 className="text-sm font-semibold mb-3 uppercase tracking-wider" style={{ color: "#FABE1A" }}>{t.footerHelp}</h4>
             <ul className="space-y-2">
-              <li><Link to="/contact" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">Contact Us</Link></li>
-              <li><Link to="/shipping-policy" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">Shipping Policy</Link></li>
-              <li><Link to="/refund-policy" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">Refund Policy</Link></li>
-              <li><Link to="/privacy-policy" className="text-white/50 hover:text-[#C8860A] text-sm transition-colors">Privacy Policy</Link></li>
+              {[
+                { to: "/contact", label: t.footerContact },
+                { to: "/shipping-policy", label: t.footerShipping },
+                { to: "/refund-policy", label: t.footerRefund },
+                { to: "/privacy-policy", label: t.footerPrivacy },
+              ].map(item => (
+                <li key={item.to}>
+                  <Link to={item.to} className="text-sm transition-colors" style={{ color: "#D4C4B4" }}
+                    onMouseEnter={e => e.currentTarget.style.color = "#FABE1A"}
+                    onMouseLeave={e => e.currentTarget.style.color = "#D4C4B4"}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-[#5C3015] mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-white/60 text-xs">
-          <span>© 2026 Rudhraksha Divine. All rights reserved. | Crafted with ?? in India</span>
+        <div className="mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs"
+          style={{ borderTop: "1px solid #5C3015", color: "#A67560" }}>
+          <span>{t.footerCopy}</span>
           <div className="flex gap-4">
-            <Link to="/privacy-policy" className="hover:text-[#C8860A] transition-colors">Privacy</Link>
-            <Link to="/shipping-policy" className="hover:text-[#C8860A] transition-colors">Shipping</Link>
-            <Link to="/refund-policy" className="hover:text-[#C8860A] transition-colors">Refunds</Link>
+            {[
+              { to: "/privacy-policy", label: "Privacy" },
+              { to: "/shipping-policy", label: "Shipping" },
+              { to: "/refund-policy", label: "Refunds" },
+            ].map(item => (
+              <Link key={item.to} to={item.to} className="transition-colors" style={{ color: "#A67560" }}
+                onMouseEnter={e => e.currentTarget.style.color = "#FABE1A"}
+                onMouseLeave={e => e.currentTarget.style.color = "#A67560"}>
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

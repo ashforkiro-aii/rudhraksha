@@ -11,6 +11,7 @@ import ErrorBoundary from './components/ErrorBoundary'
 import { useAuthStore } from './store/authStore'
 import { useCartStore } from './store/cartStore'
 import { useWishlistStore } from './store/wishlistStore'
+import { LanguageProvider } from './context/LanguageContext'
 
 // Storefront pages (code split)
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -37,8 +38,9 @@ const AdminCategories = lazy(() => import('./pages/admin/AdminCategories'))
 const AdminPromoCodes = lazy(() => import('./pages/admin/AdminPromoCodes'))
 
 const PageLoader = () => (
-  <div className="min-h-[60vh] flex items-center justify-center">
-    <div className="w-8 h-8 border-2 border-[#D97706] border-t-transparent rounded-full animate-spin" />
+  <div className="min-h-[60vh] flex items-center justify-center" style={{ background: "#EAE0D3" }}>
+    <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin"
+      style={{ borderColor: "#734129", borderTopColor: "transparent" }} />
   </div>
 )
 
@@ -65,6 +67,7 @@ export default function App() {
   }, [user])
 
   return (
+    <LanguageProvider>
     <HelmetProvider>
       <BrowserRouter>
         <ScrollToTop />
@@ -93,7 +96,7 @@ export default function App() {
 
           {/* Storefront routes */}
           <Route path="/*" element={
-            <div className="min-h-screen bg-[#1C0D05] flex flex-col">
+            <div className="min-h-screen flex flex-col" style={{ background: "#EAE0D3" }}>
               <Navbar />
               <main className="flex-1">
                 <ErrorBoundary>
@@ -156,24 +159,25 @@ export default function App() {
           toastOptions={{
             duration: 3000,
             style: {
-              background: '#ffffff',
-              color: '#1C1006',
-              border: '1px solid #E5D8C8',
-              boxShadow: '0 8px 32px rgba(27,43,94,0.18)',
+              background: '#F2EAE0',
+              color: '#734129',
+              border: '1px solid #D4C4B4',
+              boxShadow: '4px 4px 16px #C5B5A5, -2px -2px 8px #F8F3ED',
               borderRadius: '14px',
               fontSize: '15px',
               fontWeight: '500',
               padding: '14px 20px',
               maxWidth: '420px',
               textAlign: 'center',
+              fontFamily: 'Georgia, serif',
             },
             success: {
               style: {
-                background: '#f0fdf4',
-                color: '#166534',
-                border: '1px solid #bbf7d0',
+                background: '#f4faf0',
+                color: '#3a6b2a',
+                border: '1px solid #c0dba0',
               },
-              iconTheme: { primary: '#16a34a', secondary: '#fff' },
+              iconTheme: { primary: '#5c7a3e', secondary: '#fff' },
             },
             error: {
               style: {
@@ -187,5 +191,6 @@ export default function App() {
         />
       </BrowserRouter>
     </HelmetProvider>
+    </LanguageProvider>
   )
 }
