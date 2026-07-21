@@ -142,19 +142,9 @@ export default function CheckoutPage() {
 
   const removePromo = () => { setAppliedPromo(null); setPromoInput("") }
 
-  // Shipping cost: use product's delivery_charge if all items have one set,
-  // otherwise fall back to state-based flat rate
+  // Delivery cost: use product's delivery_charge if set, otherwise free
   const getShippingCost = (addr) => {
-    // If every item in the cart has a delivery_charge set, sum them up
-    const allHaveDelivery = items.length > 0 && items.every(i => i.products?.delivery_charge != null)
-    if (allHaveDelivery) {
-      return items.reduce((sum, i) => sum + (i.products?.delivery_charge || 0) * i.quantity, 0)
-    }
-    // Otherwise use state-based flat rate
-    if (!addr) return 100
-    const state = (addr.state || "").toLowerCase().trim()
-    const localStates = ["andhra pradesh", "telangana", "ap", "ts"]
-    return localStates.some(s => state.includes(s)) ? 80 : 100
+    return items.reduce((sum, i) => sum + (i.products?.delivery_charge || 0) * i.quantity, 0)
   }
 
   const [addresses, setAddresses] = useState([])
