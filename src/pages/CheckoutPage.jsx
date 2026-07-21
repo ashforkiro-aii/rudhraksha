@@ -142,8 +142,15 @@ export default function CheckoutPage() {
 
   const removePromo = () => { setAppliedPromo(null); setPromoInput("") }
 
-  // Shipping cost based on state
+  // Shipping cost: use product's delivery_charge if all items have one set,
+  // otherwise fall back to state-based flat rate
   const getShippingCost = (addr) => {
+    // If every item in the cart has a delivery_charge set, sum them up
+    const allHaveDelivery = items.length > 0 && items.every(i => i.products?.delivery_charge != null)
+    if (allHaveDelivery) {
+      return items.reduce((sum, i) => sum + (i.products?.delivery_charge || 0) * i.quantity, 0)
+    }
+    // Otherwise use state-based flat rate
     if (!addr) return 100
     const state = (addr.state || "").toLowerCase().trim()
     const localStates = ["andhra pradesh", "telangana", "ap", "ts"]
@@ -583,10 +590,13 @@ export default function CheckoutPage() {
                     </div>
                   )}
                   <div className="flex justify-between text-sm">
-                    <span className="text-[#4B3420]">Shipping</span>
-                    <span className="text-[#D97706] font-medium">+{formatINR(shipping)}</span>
+                    <span className="text-[#4B3420]">Delivery</span>
+                    {shipping === 0
+                      ? <span className="text-green-600 font-medium">Free</span>
+                      : <span className="text-[#D97706] font-medium">+{formatINR(shipping)}</span>
+                    }
                   </div>
-                  {selectedAddr && (
+                  {selectedAddr && !(items.length > 0 && items.every(i => i.products?.delivery_charge != null)) && (
                     <p className="text-[#8B6A4A] text-xs">
                       {["andhra pradesh","telangana","ap","ts"].some(s => (selectedAddr.state||"").toLowerCase().includes(s))
                         ? "AP/Telangana rate"
