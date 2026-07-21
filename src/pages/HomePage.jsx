@@ -111,20 +111,20 @@ function AboutSection() {
     { value: d.customers, label: d.customersLabel, icon: <Users size={22} /> },
   ]
   return (
-    <section className={`w-full py-14 ${PX}`} style={{ background: "#F2EAE0" }}>
+    <section className={`w-full py-14 bg-[#150801] ${PX}`}>
       <ScrollReveal>
         <div className="max-w-5xl mx-auto">
           {/* Label */}
-          <p className="text-center text-[10px] uppercase tracking-[0.3em] mb-2 font-bold" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>
+          <p className="text-center text-[10px] uppercase tracking-[0.3em] mb-2 font-bold" style={{ color: "#C8860A", fontFamily: "Lato, sans-serif" }}>
             {t.aboutLabel}
           </p>
           {/* Title */}
           <div className="text-center mb-2">
             <h2 className="font-bold uppercase tracking-[0.06em] inline-block"
-              style={{ fontFamily: "Cinzel, serif", fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)", color: "#734129" }}>
+              style={{ fontFamily: "Cinzel, serif", fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)", color: "#E5A020" }}>
               {d.title}
             </h2>
-            <span className="block text-sm mt-1 font-semibold" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>
+            <span className="block text-sm mt-1 font-semibold" style={{ color: "#DDB87A", fontFamily: "Lato, sans-serif" }}>
               {d.subtitle}
             </span>
           </div>
@@ -135,8 +135,8 @@ function AboutSection() {
             <div className="space-y-4">
               {[d.p1, d.p2, d.p3, d.p4, d.p5, d.p6].map((para, i) => (
                 <p key={i} className="leading-relaxed text-sm sm:text-base"
-                  style={{ color: "#A67560", fontFamily: "Lato, sans-serif", lineHeight: "1.8" }}>
-                  {i === 0 && <span className="float-left text-5xl font-bold mr-2 mt-1 leading-none" style={{ color: "#FABE1A", fontFamily: "Cinzel, serif" }}>D</span>}
+                  style={{ color: "#DDB87A", fontFamily: "Lato, sans-serif", lineHeight: "1.8" }}>
+                  {i === 0 && <span className="float-left text-5xl font-bold mr-2 mt-1 leading-none" style={{ color: "#C8860A", fontFamily: "Cinzel, serif" }}>D</span>}
                   {i === 0 ? para.slice(1) : para}
                 </p>
               ))}
@@ -145,14 +145,14 @@ function AboutSection() {
             {/* Stats + decorative panel */}
             <div className="flex flex-col gap-5">
               {/* Decorative carved panel */}
-              <div className="stone-panel rounded-2xl p-6 text-center relative overflow-hidden">
+              <div className="bg-[#2A1408] border border-[#5C3015] rounded-2xl p-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0 bas-relief-bg opacity-40" />
                 <div className="relative z-10">
                   <div className="text-4xl mb-3">ॐ</div>
-                  <p className="font-bold text-lg mb-1" style={{ color: "#734129", fontFamily: "Cinzel, serif" }}>
+                  <p className="font-bold text-lg mb-1" style={{ color: "#E5A020", fontFamily: "Cinzel, serif" }}>
                     {d.title}
                   </p>
-                  <p className="text-xs tracking-widest uppercase" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>
+                  <p className="text-xs tracking-widest uppercase" style={{ color: "#DDB87A", fontFamily: "Lato, sans-serif" }}>
                     {d.subtitle}
                   </p>
                   <div className="divider-carved my-4" />
@@ -161,17 +161,17 @@ function AboutSection() {
                       <Star key={i} size={14} fill="#FABE1A" stroke="none" />
                     ))}
                   </div>
-                  <p className="text-xs mt-2" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>Trusted by thousands of devotees</p>
+                  <p className="text-xs mt-2" style={{ color: "#DDB87A", fontFamily: "Lato, sans-serif" }}>Trusted by thousands of devotees</p>
                 </div>
               </div>
 
               {/* Stats grid */}
               <div className="grid grid-cols-3 gap-3">
                 {stats.map((s, i) => (
-                  <div key={i} className="stone-panel rounded-xl p-4 text-center">
-                    <div className="icon-brass flex justify-center mb-2">{s.icon}</div>
-                    <p className="font-bold text-xl" style={{ color: "#734129", fontFamily: "Cinzel, serif" }}>{s.value}</p>
-                    <p className="text-[10px] leading-tight mt-1" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>{s.label}</p>
+                  <div key={i} className="bg-[#2A1408] border border-[#5C3015] rounded-xl p-4 text-center">
+                    <div className="text-[#C8860A] flex justify-center mb-2">{s.icon}</div>
+                    <p className="font-bold text-xl" style={{ color: "#E5A020", fontFamily: "Cinzel, serif" }}>{s.value}</p>
+                    <p className="text-[10px] leading-tight mt-1" style={{ color: "#DDB87A", fontFamily: "Lato, sans-serif" }}>{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -188,7 +188,7 @@ function SectionTitle({ text }) {
   return (
     <div className="text-center mb-8">
       <h2 className="font-bold uppercase tracking-[0.08em]"
-        style={{ fontFamily: "Cinzel, serif", fontSize: "clamp(1rem, 2vw, 1.5rem)", color: "#734129" }}>
+        style={{ fontFamily: "Cinzel, serif", fontSize: "clamp(1rem, 2vw, 1.5rem)", color: "#C8860A" }}>
         {text}
       </h2>
       <div className="divider-carved w-20 mx-auto mt-3" />
@@ -202,12 +202,12 @@ function SectionHeader({ label, title, link }) {
   return (
     <div className="flex items-center justify-between mb-6">
       <div>
-        <p className="text-[10px] uppercase tracking-[0.25em] mb-1 font-bold" style={{ color: "#A67560", fontFamily: "Lato, sans-serif" }}>{label}</p>
-        <h2 className="text-xl sm:text-2xl font-bold" style={{ fontFamily: "Cinzel, serif", color: "#734129" }}>{title}</h2>
+        <p className="text-[10px] uppercase tracking-[0.25em] mb-1 font-bold" style={{ color: "#C8860A", fontFamily: "Lato, sans-serif" }}>{label}</p>
+        <h2 className="text-xl sm:text-2xl font-bold" style={{ fontFamily: "Cinzel, serif", color: "#E5A020" }}>{title}</h2>
       </div>
       {link && (
         <Link to={link} className="flex items-center gap-1 text-[12px] font-semibold transition-colors shrink-0 hover:opacity-70"
-          style={{ color: "#734129", fontFamily: "Lato, sans-serif" }}>
+          style={{ color: "#C8860A", fontFamily: "Lato, sans-serif" }}>
           {t.viewAllLink} <ArrowRight size={13} />
         </Link>
       )}
@@ -284,7 +284,7 @@ export default function HomePage() {
       <AboutSection />
 
       {/* COLLECTIONS */}
-      <section id="categories" className={`w-full py-12 bas-relief-bg ${PX}`}>
+      <section id="categories" className={`w-full py-12 bg-[#1C0D05] ${PX}`}>
         <ScrollReveal>
           <SectionTitle text={t.ourCollections} />
         </ScrollReveal>
@@ -295,7 +295,7 @@ export default function HomePage() {
             return (
               <ScrollReveal key={cat} delay={i * 0.05}>
                 <Link to={`/products?category=${encodeURIComponent(cat)}`}
-                  className="group flex flex-col overflow-hidden rounded-xl stone-panel transition-all duration-300 h-full"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-[#4A2810] hover:border-[#C8860A]/70 bg-[#230E05] hover:shadow-[0_6px_28px_rgba(200,134,10,0.2)] transition-all duration-300 h-full"
                   style={{ cursor: "pointer" }}>
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1" }}>
                     {isVid
@@ -304,13 +304,13 @@ export default function HomePage() {
                     }
                   </div>
                   <div className="px-3 py-3 flex flex-col flex-1">
-                    <h3 className="font-bold text-[12px] sm:text-[13px] mb-1 uppercase tracking-wide leading-tight heading-temple"
+                    <h3 className="font-bold text-[12px] sm:text-[13px] mb-1 uppercase tracking-wide leading-tight text-white"
                       style={{ fontFamily: "Cinzel, serif" }}>{cat}</h3>
-                    <p className="text-[11px] leading-relaxed flex-1 mb-3 text-body" style={{ fontFamily: "Lato, sans-serif" }}>
+                    <p className="text-[11px] leading-relaxed flex-1 mb-3 text-white/60">
                       {CAT_DESC[cat] || "Authentic sacred beads"}
                     </p>
                     <span className="inline-flex items-center text-[10px] font-bold px-3 py-1 rounded self-start uppercase tracking-[0.1em] transition-all duration-300"
-                      style={{ color: "#734129", border: "1px solid #D4C4B4", fontFamily: "Cinzel, serif" }}>
+                      style={{ color: "#C8860A", border: "1px solid rgba(200,134,10,0.5)", fontFamily: "Cinzel, serif" }}>
                       {t.explore}
                     </span>
                   </div>
@@ -323,18 +323,18 @@ export default function HomePage() {
 
       {/* WHY CHOOSE */}
       <ScrollReveal>
-        <section className={`w-full py-12 ${PX}`} style={{ background: "#F2EAE0", borderTop: "1px solid #D4C4B4", borderBottom: "1px solid #D4C4B4" }}>
+        <section className={`w-full py-12 ${PX}`} style={{ background: "#150801", borderTop: "1px solid #3D1F0A", borderBottom: "1px solid #3D1F0A" }}>
           <SectionTitle text={t.whyChoose} />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-10">
             {displayFeatures.map((f, i) => (
               <div key={i} className="flex flex-col items-center text-center gap-3">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center icon-brass"
-                  style={{ border: "2px solid #D4C4B4", background: "#EAE0D3", boxShadow: "2px 2px 6px #C5B5A5, -1px -1px 3px #F8F3ED" }}>
+                <div className="w-14 h-14 rounded-full border border-[#C8860A]/50 flex items-center justify-center text-[#C8860A]"
+                  style={{ background: "rgba(200,134,10,0.07)" }}>
                   {f.icon}
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold tracking-wide uppercase leading-tight heading-temple" style={{ fontFamily: "Cinzel, serif" }}>{f.title}</p>
-                  {f.sub && <p className="text-[10px] mt-0.5 text-body" style={{ fontFamily: "Lato, sans-serif" }}>{f.sub}</p>}
+                  <p className="text-white text-[11px] font-bold tracking-wide uppercase leading-tight" style={{ fontFamily: "Cinzel, serif" }}>{f.title}</p>
+                  {f.sub && <p className="text-white/60 text-[10px] mt-0.5">{f.sub}</p>}
                 </div>
               </div>
             ))}
@@ -343,7 +343,7 @@ export default function HomePage() {
       </ScrollReveal>
 
       {/* BESTSELLERS */}
-      <section className={`w-full py-12 bas-relief-bg ${PX}`}>
+      <section className={`w-full py-12 bg-[#1C0D05] ${PX}`}>
         <ScrollReveal>
           <SectionHeader label={t.bestsellersSub} title={t.bestsellers} link="/products?tags=premium" />
         </ScrollReveal>
@@ -356,7 +356,7 @@ export default function HomePage() {
       </section>
 
       {/* NEW ARRIVALS */}
-      <section className={`w-full py-12 ${PX}`} style={{ background: "#F2EAE0" }}>
+      <section className={`w-full py-12 bg-[#150801] ${PX}`}>
         <ScrollReveal>
           <SectionHeader label={t.newArrivalsSub} title={t.newArrivals} link="/products?sort=newest" />
         </ScrollReveal>
@@ -369,7 +369,7 @@ export default function HomePage() {
       </section>
 
       {/* REVIEWS */}
-      <section className="w-full bas-relief-bg">
+      <section className="w-full bg-[#1C0D05]">
         <ScrollReveal><ReviewsSection /></ScrollReveal>
       </section>
     </>

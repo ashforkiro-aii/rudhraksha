@@ -39,7 +39,7 @@ const AdminPromoCodes = lazy(() => import('./pages/admin/AdminPromoCodes'))
 const AdminAbout = lazy(() => import('./pages/admin/AdminAbout'))
 
 const PageLoader = () => (
-  <div className="min-h-[60vh] flex items-center justify-center" style={{ background: "#EAE0D3" }}>
+  <div className="min-h-[60vh] flex items-center justify-center" style={{ background: "#1C0D05" }}>
     <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin"
       style={{ borderColor: "#734129", borderTopColor: "transparent" }} />
   </div>
@@ -98,7 +98,7 @@ export default function App() {
 
           {/* Storefront routes */}
           <Route path="/*" element={
-            <div className="min-h-screen flex flex-col" style={{ background: "#EAE0D3" }}>
+            <div className="min-h-screen flex flex-col" style={{ background: "#1C0D05" }}>
               <Navbar />
               <main className="flex-1">
                 <ErrorBoundary>

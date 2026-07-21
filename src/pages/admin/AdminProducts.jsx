@@ -14,7 +14,8 @@ import toast from "react-hot-toast"
 const BANGLE_CATEGORY = "5 Mukhi"
 
 const EMPTY_FORM = {
-  name: "", price: "", category: "5 Mukhi", description: "",
+  name: "", price: "", original_price: "", delivery_charge: "",
+  category: "5 Mukhi", description: "",
   size: "", stock: "", tags: [], images: []
 }
 
@@ -187,6 +188,8 @@ export default function AdminProducts() {
       stock: p.stock !== undefined && p.stock !== null ? String(p.stock) : "",
       tags: p.tags || [], images: p.images || [],
       custom_id: p.custom_id || "", series_id: p.series_id || "NS0",
+      original_price: p.original_price ? String(p.original_price) : "",
+      delivery_charge: p.delivery_charge ? String(p.delivery_charge) : "",
     })
     setErrors({})
     setModalOpen(true)
@@ -224,6 +227,8 @@ export default function AdminProducts() {
       custom_id: editProduct ? (editProduct.custom_id || null) : (form.custom_id?.trim() || null),
       description: form.description.trim(), size: form.category === BANGLE_CATEGORY ? (form.size.trim() || null) : null,
       tags: form.tags, images: form.images, series_id: form.series_id || 'NS0',
+      original_price: form.original_price ? Math.floor(Number(form.original_price)) : null,
+      delivery_charge: form.delivery_charge !== "" && form.delivery_charge !== null ? Math.floor(Number(form.delivery_charge)) : null,
     }
     try {
       if (editProduct) {
@@ -373,7 +378,12 @@ export default function AdminProducts() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-gray-500 text-xs">{p.category}</td>
-                  <td className="px-4 py-3 text-[#5D3A1A] text-xs font-medium">{formatINR(p.price)}</td>
+                  <td className="px-4 py-3">
+                    <span className="text-[#5D3A1A] text-xs font-medium">{formatINR(p.price)}</span>
+                    {p.original_price && p.original_price > p.price && (
+                      <span className="text-gray-400 text-xs line-through block">{formatINR(p.original_price)}</span>
+                    )}
+                  </td>
                   <td className="px-4 py-3">
                     <span className={`text-xs font-medium ${p.stock < 10 ? "text-red-400" : p.stock < 20 ? "text-yellow-400" : "text-green-400"}`}>
                       {p.stock < 10 && <AlertTriangle size={11} className="inline mr-1" />}{p.stock}
@@ -477,6 +487,18 @@ export default function AdminProducts() {
                       className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#1C1006] focus:outline-none focus:border-[#5D3A1A]"
                       placeholder="2499" />
                     {errors.price && <p className="text-red-400 text-xs mt-1">{errors.price}</p>}
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-400 mb-1 block">Original Price (₹) <span className="text-gray-600">optional — for strikethrough</span></label>
+                    <input type="number" min="0" step="1" value={form.original_price} onChange={e => setForm(f => ({ ...f, original_price: e.target.value }))}
+                      className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#1C1006] focus:outline-none focus:border-[#5D3A1A]"
+                      placeholder="e.g. 3499 (leave empty if no discount)" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-400 mb-1 block">Delivery Charge (₹) <span className="text-gray-600">leave empty for Free Delivery</span></label>
+                    <input type="number" min="0" step="1" value={form.delivery_charge} onChange={e => setForm(f => ({ ...f, delivery_charge: e.target.value }))}
+                      className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#1C1006] focus:outline-none focus:border-[#5D3A1A]"
+                      placeholder="e.g. 80 (leave empty = Free Delivery)" />
                   </div>
                   <div>
                     <label className="text-xs text-gray-400 mb-1 block">Stock *</label>

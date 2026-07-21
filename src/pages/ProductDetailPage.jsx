@@ -186,7 +186,24 @@ export default function ProductDetailPage() {
               <span className="text-[#8B6A4A] text-xs">(Authentic &amp; Certified)</span>
             </div>
 
-            <p className="text-3xl font-bold text-[#5D3A1A] mb-4">{formatINR(product.price)}</p>
+            <div className="mb-4">
+              <div className="flex items-center gap-3">
+                <p className="text-3xl font-bold text-[#D97706]">{formatINR(product.price)}</p>
+                {product.original_price && product.original_price > product.price && (
+                  <p className="text-xl text-gray-400 line-through">{formatINR(product.original_price)}</p>
+                )}
+                {product.original_price && product.original_price > product.price && (
+                  <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full">
+                    {Math.round(((product.original_price - product.price) / product.original_price) * 100)}% OFF
+                  </span>
+                )}
+              </div>
+              <p className="text-sm mt-1" style={{ color: product.delivery_charge ? "#8B6A4A" : "#16a34a" }}>
+                {product.delivery_charge
+                  ? `+ ₹${product.delivery_charge} delivery charge`
+                  : "🚚 Free Delivery"}
+              </p>
+            </div>
             <p className="text-[#4B3420] text-sm leading-relaxed mb-6">{product.description}</p>
 
             {/* Variants / Stock */}
@@ -256,7 +273,7 @@ export default function ProductDetailPage() {
             <div className="grid grid-cols-3 gap-2 text-center">
               {[
                 { icon: '🔱', label: 'Lab Certified' },
-                { icon: '🚚', label: 'Free Shipping' },
+                { icon: '🚚', label: product.delivery_charge ? `₹${product.delivery_charge} Delivery` : 'Free Delivery' },
                 { icon: '↩️', label: '7-Day Returns' },
               ].map(b => (
                 <div key={b.label} className="bg-[#FAFAFA] border border-[#E5D8C8] rounded-xl py-2.5 px-1">
