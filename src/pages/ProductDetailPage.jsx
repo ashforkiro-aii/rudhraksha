@@ -111,8 +111,39 @@ export default function ProductDetailPage() {
   return (
     <>
       <Helmet>
-        <title>{product.name} - Rudhraksha Store</title>
-        <meta name="description" content={product.description || `Buy ${product.name} at Rudhraksha Store. Authentic certified sacred beads.`} />
+        <title>{product.name} – Buy Online | Rudhraksha Divines</title>
+        <meta name="description" content={`Buy authentic ${product.name} online. ${product.description ? product.description.slice(0, 140) : `Certified ${product.category} Rudraksha from Nepal & India.`} ₹${product.price}. Free delivery available.`} />
+        <meta name="keywords" content={`${product.name}, buy ${product.category}, authentic rudraksha, ${product.tags?.join(', ')}, rudraksha online india`} />
+        <link rel="canonical" href={`https://www.rudrakshadivines.com/products/${product.id}`} />
+        <meta property="og:title" content={`${product.name} – Rudhraksha Divines`} />
+        <meta property="og:description" content={product.description || `Authentic ${product.category} Rudraksha. Certified and sourced from Nepal & India.`} />
+        <meta property="og:image" content={product.images?.[0] || 'https://www.rudrakshadivines.com/og-image.png'} />
+        <meta property="og:url" content={`https://www.rudrakshadivines.com/products/${product.id}`} />
+        <meta property="og:type" content="product" />
+        <meta property="product:price:amount" content={String(product.price)} />
+        <meta property="product:price:currency" content="INR" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": product.name,
+          "image": product.images || [],
+          "description": product.description || `Authentic ${product.category} Rudraksha`,
+          "sku": product.custom_id || product.id,
+          "brand": { "@type": "Brand", "name": "Rudhraksha Divines" },
+          "offers": {
+            "@type": "Offer",
+            "url": `https://www.rudrakshadivines.com/products/${product.id}`,
+            "priceCurrency": "INR",
+            "price": product.price,
+            "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "seller": { "@type": "Organization", "name": "Rudhraksha Divines" }
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "1"
+          }
+        })}</script>
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
