@@ -7,6 +7,7 @@ import { useCartStore } from "../store/cartStore"
 import { useCategoryStore } from "../store/categoryStore"
 import { useAdminStore } from "../store/adminStore"
 import { useLanguage } from "../context/LanguageContext"
+import { getSetting } from "../services/settingsService"
 import logoImg from "../assets/logo.jpg"
 import toast from "react-hot-toast"
 import { isAdmin as checkIsAdmin } from "./AdminRoute"
@@ -28,6 +29,11 @@ export default function Navbar() {
   const searchRef = useRef(null)
   const isAdmin = checkIsAdmin(user)
   const isOnAdminPanel = pathname.startsWith("/admin")
+  const [logoUrl, setLogoUrl] = useState(logoImg)
+
+  useEffect(() => {
+    getSetting("site_logo_url").then(url => { if (url) setLogoUrl(url) }).catch(() => {})
+  }, [])
 
   useEffect(() => {
     if (!products.length) loadProducts()
@@ -100,7 +106,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 flex-shrink-0" onClick={closeAll}>
           <div style={{ boxShadow: "2px 2px 6px #C5B5A5, -1px -1px 3px #F8F3ED", borderRadius: "50%" }}>
-            <img src={logoImg} alt="Rudhraksha Divine" className="h-10 w-10 rounded-full object-cover border-2 border-[#734129] flex-shrink-0" />
+          <img src={logoUrl} alt="Rudhraksha Divine" className="h-10 w-10 rounded-full object-cover border-2 border-[#734129] flex-shrink-0" onError={e => { e.target.src = logoImg }} />
           </div>
           <div className="hidden sm:block leading-none">
             <div className="font-bold tracking-wide text-[1rem] text-[#C8860A]" style={{ fontFamily: "Cinzel, serif" }}>RUDRAKSHA</div>
