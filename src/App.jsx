@@ -141,7 +141,7 @@ export default function App() {
                 </a>
                 {/* WhatsApp */}
                 <a
-                  href="https://wa.me/918639006849"
+                  href="https://wa.me/919281444571"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Chat on WhatsApp"

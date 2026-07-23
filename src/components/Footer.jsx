@@ -19,9 +19,9 @@ export default function Footer() {
               {t.footerTagline}
             </p>
             <div className="space-y-2 text-sm" style={{ color: "#D4C4B4" }}>
-              <div className="flex items-center gap-2"><Mail size={13} style={{ color: "#FABE1A" }} /> rudhraksha@gmail.com</div>
-              <div className="flex items-center gap-2"><Phone size={13} style={{ color: "#FABE1A" }} /> +91 863 900 6849</div>
-              <div className="flex items-center gap-2"><Clock size={13} style={{ color: "#FABE1A" }} /> Mon–Sat, 10am–7pm</div>
+              <div className="flex items-center gap-2"><Mail size={13} style={{ color: "#FABE1A" }} /> sivasri3545@gmail.com</div>
+              <div className="flex items-center gap-2"><Phone size={13} style={{ color: "#FABE1A" }} /> +91 92814 44571</div>
+              <div className="flex items-center gap-2"><Clock size={13} style={{ color: "#FABE1A" }} /> Mon–Sun, 9am–9pm</div>
             </div>
           </div>
 
