@@ -62,8 +62,8 @@ function ImageUploader({ images, onImagesChange, uploading, setUploading }) {
     handleFiles(e.dataTransfer.files)
   }
 
-  const removeImage = async (url, idx) => {
-    await deleteProductImage(url)
+  const removeImage = (url, idx) => {
+    // Only remove from form state — do NOT delete from storage
     onImagesChange(images.filter((_, i) => i !== idx))
   }
 
