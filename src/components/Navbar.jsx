@@ -302,6 +302,24 @@ export default function Navbar() {
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
             className="lg:hidden overflow-hidden" style={{ borderTop: "1px solid #3D1F0A", background: "#1A0A02" }}>
             <div className="px-4 py-4 flex flex-col gap-1">
+
+              {/* TOP ROW: Language toggle + Admin button — always visible at top */}
+              <div className="flex items-center gap-2 mb-3">
+                <button onClick={toggleLang}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold flex-1 justify-center"
+                  style={{ background: "#FABE1A", color: "#734129", fontFamily: "Cinzel, serif" }}>
+                  <Languages size={13} /> {t.langToggle}
+                </button>
+                {isAdmin && (
+                  <Link to={isOnAdminPanel ? "/" : "/admin"}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold flex-1 justify-center"
+                    style={{ background: "#C8860A", color: "#1A0A02" }}
+                    onClick={closeAll}>
+                    {isOnAdminPanel ? <><Store size={12} /> User View</> : <><Settings size={12} /> Admin Panel</>}
+                  </Link>
+                )}
+              </div>
+
               {/* Mobile Search */}
               <div ref={searchRef} className="relative mb-3">
                 <form onSubmit={handleSearch} className="relative">
@@ -357,33 +375,16 @@ export default function Navbar() {
 
               {!user && (
                 <div className="pt-3 flex flex-col gap-2">
-                  <button onClick={toggleLang}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 font-bold rounded-lg text-sm"
-                    style={{ background: "#3D1F0A", color: "#FABE1A", border: "1px solid #5C3015" }}>
-                    <Languages size={14} /> {t.langToggle}
-                  </button>
                   <Link to="/login" className="w-full flex items-center justify-center py-2.5 font-bold rounded-lg text-sm" style={{ background: "#C8860A", color: "#1A0A02" }} onClick={closeAll}>{t.login}</Link>
                 </div>
               )}
 
               {user && (
                 <div className="pt-2">
-                  <div className="flex items-center justify-between px-2 mb-2">
-                    <p className="text-[#DDB87A] text-[10px] uppercase tracking-widest font-bold">My Account</p>
-                    <button onClick={toggleLang}
-                      className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold"
-                      style={{ background: "#FABE1A", color: "#734129" }}>
-                      <Languages size={11} /> {t.langToggle}
-                    </button>
-                  </div>
+                  <p className="text-[#DDB87A] text-[10px] uppercase tracking-widest font-bold px-2 mb-2">My Account</p>
                   <Link to="/profile" className="flex items-center gap-2 py-2 px-2 text-sm text-white/50 hover:text-[#C8860A]" onClick={closeAll}><User size={14} /> {t.profile}</Link>
                   <Link to="/orders" className="flex items-center gap-2 py-2 px-2 text-sm text-white/50 hover:text-[#C8860A]" onClick={closeAll}><Package size={14} /> {t.myOrders}</Link>
                   <Link to="/wishlist" className="flex items-center gap-2 py-2 px-2 text-sm text-white/50 hover:text-[#C8860A]" onClick={closeAll}><Heart size={14} /> {t.wishlist}</Link>
-                  {isAdmin && (
-                    <Link to={isOnAdminPanel ? "/" : "/admin"} className="flex items-center gap-2 py-2 px-2 text-sm text-[#C8860A] font-semibold" onClick={closeAll}>
-                      {isOnAdminPanel ? <><Store size={14} /> {t.switchToUser}</> : <><Settings size={14} /> {t.switchToAdmin}</>}
-                    </Link>
-                  )}
                   <button onClick={handleSignOut} className="flex items-center gap-2 py-2 px-2 text-sm text-red-400 w-full"><LogOut size={14} /> {t.logout}</button>
                 </div>
               )}
