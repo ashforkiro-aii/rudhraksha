@@ -273,7 +273,7 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Rudhraksha Divine - Authentic Sacred Beads</title>
+        <title>Rudhraksha Divines - Authentic Sacred Beads</title>
         <meta name="description" content="Authentic certified Rudraksha beads from Nepal & India." />
       </Helmet>
 

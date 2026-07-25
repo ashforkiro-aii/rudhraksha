@@ -45,7 +45,7 @@ const translations = {
 
     // Sections
     ourCollections: "Our Divine Collections",
-    whyChoose: "Why Choose Rudraksha Divine?",
+    whyChoose: "Why Choose Rudhraksha Divines?",
     bestsellers: "Bestsellers",
     bestsellersSub: "Devotee Favourites",
     newArrivals: "New Arrivals",
@@ -81,7 +81,7 @@ const translations = {
     footerShipping: "Shipping Policy",
     footerRefund: "Refund Policy",
     footerPrivacy: "Privacy Policy",
-    footerCopy: "© 2026 Rudhraksha Divine. All rights reserved. | Crafted with 🙏 in India",
+    footerCopy: "© 2026 Rudhraksha Divines. All rights reserved. | Crafted with 🙏 in India",
 
     // Checkout
     checkout: "Checkout",
@@ -161,7 +161,7 @@ const translations = {
 
     // Sections
     ourCollections: "మా దివ్య సేకరణలు",
-    whyChoose: "రుద్రాక్ష డివైన్ ఎందుకు ఎంచుకోవాలి?",
+    whyChoose: "రుద్రాక్ష డివైన్స్ ఎందుకు ఎంచుకోవాలి?",
     bestsellers: "అత్యధికంగా అమ్ముడైనవి",
     bestsellersSub: "భక్తుల ఇష్టాలు",
     newArrivals: "కొత్త రాకలు",
@@ -197,7 +197,7 @@ const translations = {
     footerShipping: "షిప్పింగ్ పాలసీ",
     footerRefund: "రిఫండ్ పాలసీ",
     footerPrivacy: "గోప్యతా పాలసీ",
-    footerCopy: "© 2026 రుద్రాక్ష డివైన్. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి. | భారత్‌లో 🙏 తో తయారుచేయబడింది",
+    footerCopy: "© 2026 రుద్రాక్ష డివైన్స్. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి. | భారత్‌లో 🙏 తో తయారుచేయబడింది",
 
     // Checkout
     checkout: "చెక్అవుట్",

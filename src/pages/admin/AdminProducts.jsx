@@ -209,12 +209,12 @@ export default function AdminProducts() {
     if (!validate()) return
     setSaving(true)
 
-    // Check for duplicate custom_id only when adding a new product
+    // Check for duplicate custom_id (skip check if the ID is unchanged on edit)
     const newCustomId = form.custom_id?.trim()
-    if (!editProduct && newCustomId) {
-      const existing = products.find(p => p.custom_id === newCustomId)
+    if (newCustomId) {
+      const existing = products.find(p => p.custom_id === newCustomId && p.id !== editProduct?.id)
       if (existing) {
-        toast.error(`Product ID "${newCustomId}" already exists — "${existing.name}". Edit that product instead.`, { duration: 5000 })
+        toast.error(`Product ID "${newCustomId}" already exists — "${existing.name}". Use a different ID.`, { duration: 5000 })
         setSaving(false)
         return
       }
@@ -224,7 +224,7 @@ export default function AdminProducts() {
     // on product UPDATE from accidentally decrementing the stock we just set.
     const payload = {
       name: form.name.trim(), price: Math.floor(Number(form.price)), category: form.category,
-      custom_id: editProduct ? (editProduct.custom_id || null) : (form.custom_id?.trim() || null),
+      custom_id: form.custom_id?.trim() || null,
       description: form.description.trim(), size: form.category === BANGLE_CATEGORY ? (form.size.trim() || null) : null,
       tags: form.tags, images: form.images, series_id: form.series_id || 'NS0',
       original_price: form.original_price ? Math.floor(Number(form.original_price)) : null,
@@ -457,21 +457,14 @@ export default function AdminProducts() {
                   <div className="col-span-2">
                     <label className="text-xs text-gray-400 mb-1 block">
                       Product ID <span className="text-gray-600">(e.g. NS0.1, NS1.5)</span>
-                      {editProduct && <span className="ml-2 text-[#D97706] font-medium">· locked after creation</span>}
                     </label>
                     <input
                       value={form.custom_id || ""}
-                      onChange={e => !editProduct && setForm(f => ({ ...f, custom_id: e.target.value }))}
-                      readOnly={!!editProduct}
-                      className={`w-full border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#5D3A1A] ${
-                        editProduct
-                          ? "bg-gray-50 border-gray-100 text-gray-400 cursor-not-allowed select-none"
-                          : "bg-white border-gray-200 text-[#1C1006]"
-                      }`}
+                      onChange={e => setForm(f => ({ ...f, custom_id: e.target.value }))}
+                      className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#1C1006] focus:outline-none focus:border-[#5D3A1A]"
                       placeholder="e.g. NS0.1"
                     />
                     {!editProduct && <p className="text-gray-600 text-xs mt-0.5">Leave empty to auto-generate</p>}
-                    {editProduct && form.custom_id && <p className="text-gray-400 text-xs mt-0.5">ID is permanent and cannot be changed after creation.</p>}
                   </div>
 
                   <div className="col-span-2">

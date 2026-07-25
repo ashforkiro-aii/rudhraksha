@@ -106,11 +106,11 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 flex-shrink-0" onClick={closeAll}>
           <div style={{ boxShadow: "2px 2px 6px #C5B5A5, -1px -1px 3px #F8F3ED", borderRadius: "50%" }}>
-          <img src={logoUrl} alt="Rudhraksha Divine" className="h-10 w-10 rounded-full object-cover border-2 border-[#734129] flex-shrink-0" onError={e => { e.target.src = logoImg }} />
+          <img src={logoUrl} alt="Rudhraksha Divines" className="h-10 w-10 rounded-full object-cover border-2 border-[#734129] flex-shrink-0" onError={e => { e.target.src = logoImg }} />
           </div>
           <div className="hidden sm:block leading-none">
             <div className="font-bold tracking-wide text-[1rem] text-[#C8860A]" style={{ fontFamily: "Cinzel, serif" }}>RUDRAKSHA</div>
-            <div className="text-[9px] tracking-[0.3em] uppercase mt-0.5 text-[#DDB87A]">DIVINE</div>
+            <div className="text-[9px] tracking-[0.3em] uppercase mt-0.5 text-[#DDB87A]">DIVINES</div>
           </div>
         </Link>
 

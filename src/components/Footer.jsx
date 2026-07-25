@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <h3 className="text-xl font-bold mb-3" style={{ fontFamily: 'Cinzel, serif', color: "#FABE1A" }}>
-              ॐ Rudhraksha Divine
+              ॐ Rudhraksha Divines
             </h3>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#D4C4B4" }}>
               {t.footerTagline}

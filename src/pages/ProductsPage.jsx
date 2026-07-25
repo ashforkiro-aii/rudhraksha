@@ -285,7 +285,7 @@ export default function ProductsPage() {
             {!loading && products.length > 0 && (
               <div className="flex items-center justify-between mb-4">
                 <p className="text-[#DDB87A] text-xs">
-                  Showing <span className="text-[#4B3420] font-medium">{(page - 1) * pageSize + 1}�{Math.min(page * pageSize, products.length)}</span> of <span className="text-[#4B3420] font-medium">{products.length}</span>
+                  Showing <span className="text-[#C8860A] font-medium">{(page - 1) * pageSize + 1}�{Math.min(page * pageSize, products.length)}</span> of <span className="text-[#C8860A] font-medium">{products.length}</span>
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="text-[#DDB87A] text-xs hidden sm:block">Per page:</span>
