@@ -21,7 +21,7 @@ export default function AdminCategories() {
   useEffect(() => { loadCategories() }, [])
 
   const handleAdd = async () => {
-    const trimmed = newName.trim()
+    const trimmed = newName.trim().toUpperCase()
     if (!trimmed) { toast.error("Enter a category name"); return }
     if (categories.map(c => c.toLowerCase()).includes(trimmed.toLowerCase())) {
       toast.error(`"${trimmed}" already exists`); return
@@ -60,7 +60,7 @@ export default function AdminCategories() {
   }
 
   const handleEditSave = async () => {
-    const trimmed = editValue.trim()
+    const trimmed = editValue.trim().toUpperCase()
     if (!trimmed) { toast.error("Name cannot be empty"); return }
     if (trimmed === editName) { cancelEdit(); return }
     if (categories.map(c => c.toLowerCase()).includes(trimmed.toLowerCase())) {
@@ -129,9 +129,9 @@ export default function AdminCategories() {
                         <input
                           autoFocus
                           value={editValue}
-                          onChange={e => setEditValue(e.target.value)}
+                          onChange={e => setEditValue(e.target.value.toUpperCase())}
                           onKeyDown={e => { if (e.key === "Enter") handleEditSave(); if (e.key === "Escape") cancelEdit() }}
-                          className="border border-[#5D3A1A]/40 rounded-md px-2 py-1 text-sm w-full max-w-xs focus:outline-none focus:border-[#5D3A1A]"
+                          className="border border-[#5D3A1A]/40 rounded-md px-2 py-1 text-sm w-full max-w-xs focus:outline-none focus:border-[#5D3A1A] uppercase"
                         />
                       ) : (
                         cat
@@ -219,10 +219,10 @@ export default function AdminCategories() {
                   <input
                     autoFocus
                     value={newName}
-                    onChange={e => setNewName(e.target.value)}
+                    onChange={e => setNewName(e.target.value.toUpperCase())}
                     onKeyDown={e => e.key === "Enter" && handleAdd()}
-                    placeholder="e.g. Anklets, Rings, Hair Accessories..."
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#1C1006] placeholder-gray-400 focus:outline-none focus:border-[#5D3A1A]"
+                    placeholder="e.g. ANKLETS, RINGS, HAIR ACCESSORIES..."
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-[#1C1006] placeholder-gray-400 focus:outline-none focus:border-[#5D3A1A] uppercase"
                   />
                   {newName.trim() && (
                     <p className="text-xs text-gray-400 mt-1">

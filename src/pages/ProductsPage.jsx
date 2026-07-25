@@ -111,12 +111,12 @@ export default function ProductsPage() {
         {/* -- TOP BAR ROW 1: Title + result count + view toggle -- */}
         <div className="flex items-start justify-between mb-3 gap-3">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#1C1006] leading-tight" style={{ fontFamily: 'Georgia, serif' }}>
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#C8860A] leading-tight" style={{ fontFamily: 'Georgia, serif' }}>
               {headingText}
             </h1>
             {search && (
-              <p className="text-[#4B3420] text-sm mt-0.5">
-                Results for: <span className="text-[#D97706] font-semibold">"{search}"</span>
+              <p className="text-[#DDB87A] text-sm mt-0.5">
+                Results for: <span className="text-[#E5A020] font-semibold">"{search}"</span>
               </p>
             )}
           </div>
@@ -128,18 +128,18 @@ export default function ProductsPage() {
             </span>
 
             {/* View toggle */}
-            <div className="flex items-center bg-[#F5F0EB] rounded-lg p-0.5 border border-[#E5D8C8]">
+            <div className="flex items-center bg-[#2A1408] rounded-lg p-0.5 border border-[#5C3015]">
               <button
                 onClick={() => setViewMode('grid')}
                 title="Grid view"
-                className={`p-1.5 rounded-md transition-all ${viewMode === 'grid' ? 'bg-[#5D3A1A] text-white shadow-sm' : 'text-[#8B6A4A] hover:text-[#4B3420]'}`}
+                className={`p-1.5 rounded-md transition-all ${viewMode === 'grid' ? 'bg-[#C8860A] text-[#1A0A02] shadow-sm' : 'text-[#DDB87A] hover:text-[#C8860A]'}`}
               >
                 <LayoutGrid size={15} />
               </button>
               <button
                 onClick={() => setViewMode('list')}
                 title="List view"
-                className={`p-1.5 rounded-md transition-all ${viewMode === 'list' ? 'bg-[#5D3A1A] text-white shadow-sm' : 'text-[#8B6A4A] hover:text-[#4B3420]'}`}
+                className={`p-1.5 rounded-md transition-all ${viewMode === 'list' ? 'bg-[#C8860A] text-[#1A0A02] shadow-sm' : 'text-[#DDB87A] hover:text-[#C8860A]'}`}
               >
                 <List size={15} />
               </button>
@@ -155,8 +155,8 @@ export default function ProductsPage() {
               onClick={() => setFilter('category', '')}
               className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
                 !category
-                  ? 'bg-[#5D3A1A] text-white border-[#5D3A1A] shadow-sm'
-                  : 'bg-white text-[#4B3420] hover:text-[#5D3A1A] border-[#E5D8C8] hover:border-[#5D3A1A]/40'
+                  ? 'bg-[#C8860A] text-[#1A0A02] border-[#C8860A] shadow-sm'
+                  : 'bg-[#2A1408] text-[#DDB87A] hover:text-[#C8860A] border-[#5C3015] hover:border-[#C8860A]/60'
               }`}
             >
               All
@@ -167,8 +167,8 @@ export default function ProductsPage() {
                 onClick={() => setFilter('category', cat)}
                 className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
                   category === cat || search.toLowerCase() === cat.toLowerCase()
-                    ? 'bg-[#5D3A1A] text-white border-[#5D3A1A] shadow-sm'
-                    : 'bg-white text-[#4B3420] hover:text-[#5D3A1A] border-[#E5D8C8] hover:border-[#5D3A1A]/40'
+                    ? 'bg-[#C8860A] text-[#1A0A02] border-[#C8860A] shadow-sm'
+                    : 'bg-[#2A1408] text-[#DDB87A] hover:text-[#C8860A] border-[#5C3015] hover:border-[#C8860A]/60'
                 }`}
               >
                 {cat}
@@ -181,7 +181,7 @@ export default function ProductsPage() {
             {hasFilters && (
               <button
                 onClick={clearFilters}
-                className="flex items-center gap-1 text-xs text-[#8B6A4A] hover:text-red-500 transition-colors whitespace-nowrap"
+                className="flex items-center gap-1 text-xs text-[#DDB87A] hover:text-red-400 transition-colors whitespace-nowrap"
               >
                 <X size={12} /> Clear
               </button>
@@ -191,7 +191,7 @@ export default function ProductsPage() {
             <div className="relative" ref={sortRef}>
               <button
                 onClick={() => setSortOpen(o => !o)}
-                className="flex items-center gap-1.5 bg-white border border-[#E5D8C8] text-[#4B3420] text-xs rounded-lg px-3 py-2 hover:border-[#5D3A1A]/50 transition-colors whitespace-nowrap"
+                className="flex items-center gap-1.5 bg-[#2A1408] border border-[#5C3015] text-[#DDB87A] text-xs rounded-lg px-3 py-2 hover:border-[#C8860A]/60 transition-colors whitespace-nowrap"
               >
                 <SlidersHorizontal size={12} />
                 {SORT_OPTIONS.find(o => o.value === sort)?.label || 'Sort'}
@@ -204,7 +204,7 @@ export default function ProductsPage() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.96 }}
                     transition={{ duration: 0.14 }}
-                    className="absolute right-0 top-full mt-1.5 w-44 bg-white border border-[#E5D8C8] rounded-xl shadow-xl z-30 py-1.5 overflow-hidden"
+                    className="absolute right-0 top-full mt-1.5 w-44 bg-[#2A1408] border border-[#5C3015] rounded-xl shadow-xl z-30 py-1.5 overflow-hidden"
                   >
                     {SORT_OPTIONS.map(o => (
                       <button
@@ -212,8 +212,8 @@ export default function ProductsPage() {
                         onClick={() => { setFilter('sort', o.value); setSortOpen(false) }}
                         className={`w-full text-left px-4 py-2 text-xs transition-colors ${
                           sort === o.value
-                            ? 'bg-[#FAFAFA] text-[#5D3A1A] font-semibold'
-                            : 'text-[#4B3420] hover:bg-[#FAFAFA] hover:text-[#5D3A1A]'
+                            ? 'bg-[#3D1F0A] text-[#C8860A] font-semibold'
+                            : 'text-[#DDB87A] hover:bg-[#3D1F0A] hover:text-[#C8860A]'
                         }`}
                       >
                         {o.value === sort && <span className="mr-1">?</span>}
@@ -232,21 +232,21 @@ export default function ProductsPage() {
 
           {/* Sticky sidebar � desktop only */}
           <aside className="hidden lg:block w-[220px] flex-shrink-0">
-            <div className="sticky top-20 bg-white rounded-2xl border border-[#E5D8C8] overflow-hidden shadow-sm">
-              <div className="px-4 py-3 bg-[#5D3A1A] text-white">
-                <h2 className="text-xs font-bold uppercase tracking-widest">Categories</h2>
+            <div className="sticky top-20 bg-[#2A1408] rounded-2xl border border-[#5C3015] overflow-hidden shadow-sm">
+              <div className="px-4 py-3 bg-[#C8860A]">
+                <h2 className="text-xs font-bold uppercase tracking-widest text-[#1A0A02]">Categories</h2>
               </div>
               <nav className="py-2">
                 <button
                   onClick={() => setFilter('category', '')}
                   className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-all text-left ${
                     !category
-                      ? 'text-[#5D3A1A] font-semibold bg-[#FAFAFA] border-l-2 border-[#5D3A1A]'
-                      : 'text-[#4B3420] hover:text-[#5D3A1A] hover:bg-[#FAFAFA]'
+                      ? 'text-[#C8860A] font-semibold bg-[#3D1F0A] border-l-2 border-[#C8860A]'
+                      : 'text-[#DDB87A] hover:text-[#C8860A] hover:bg-[#3D1F0A]'
                   }`}
                 >
                   <span>All</span>
-                  <span className="text-[10px] text-[#8B6A4A] bg-[#F5F0EB] px-1.5 py-0.5 rounded-full">
+                  <span className="text-[10px] text-[#DDB87A] bg-[#1A0A02] px-1.5 py-0.5 rounded-full border border-[#5C3015]">
                     {loading ? '�' : products.length}
                   </span>
                 </button>
@@ -259,14 +259,14 @@ export default function ProductsPage() {
                       onClick={() => setFilter('category', cat)}
                       className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-all text-left ${
                         active
-                          ? 'text-[#5D3A1A] font-semibold bg-[#FAFAFA] border-l-2 border-[#5D3A1A]'
-                          : 'text-[#4B3420] hover:text-[#5D3A1A] hover:bg-[#FAFAFA]'
+                          ? 'text-[#C8860A] font-semibold bg-[#3D1F0A] border-l-2 border-[#C8860A]'
+                          : 'text-[#DDB87A] hover:text-[#C8860A] hover:bg-[#3D1F0A]'
                       }`}
                     >
                       <span className="truncate pr-2">{cat}</span>
                       {count > 0 && (
                         <span className={`flex-shrink-0 text-[10px] px-1.5 py-0.5 rounded-full ${
-                          active ? 'bg-[#5D3A1A] text-white' : 'text-[#8B6A4A] bg-[#F5F0EB]'
+                          active ? 'bg-[#C8860A] text-[#1A0A02]' : 'text-[#DDB87A] bg-[#1A0A02] border border-[#5C3015]'
                         }`}>
                           {count}
                         </span>
@@ -284,15 +284,15 @@ export default function ProductsPage() {
             {/* Per-page selector + count */}
             {!loading && products.length > 0 && (
               <div className="flex items-center justify-between mb-4">
-                <p className="text-[#8B6A4A] text-xs">
+                <p className="text-[#DDB87A] text-xs">
                   Showing <span className="text-[#4B3420] font-medium">{(page - 1) * pageSize + 1}�{Math.min(page * pageSize, products.length)}</span> of <span className="text-[#4B3420] font-medium">{products.length}</span>
                 </p>
                 <div className="flex items-center gap-2">
-                  <span className="text-[#8B6A4A] text-xs hidden sm:block">Per page:</span>
+                  <span className="text-[#DDB87A] text-xs hidden sm:block">Per page:</span>
                   <select
                     value={pageSize}
                     onChange={e => { setPageSize(Number(e.target.value)); setPage(1) }}
-                    className="bg-white border border-[#E5D8C8] text-[#4B3420] text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#5D3A1A]"
+                    className="bg-[#2A1408] border border-[#5C3015] text-[#DDB87A] text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#C8860A]"
                   >
                     {PAGE_SIZE_OPTIONS.map(n => <option key={n} value={n}>{n}</option>)}
                   </select>
@@ -319,17 +319,17 @@ export default function ProductsPage() {
                 className="flex flex-col items-center justify-center py-24 text-center"
               >
                 <span className="text-6xl mb-4 leading-none">??</span>
-                <h3 className="text-[#1C1006] text-lg font-bold mb-1" style={{ fontFamily: 'Georgia, serif' }}>
+                <h3 className="text-[#C8860A] text-lg font-bold mb-1" style={{ fontFamily: 'Georgia, serif' }}>
                   No Rudraksha Found
                 </h3>
-                <p className="text-[#8B6A4A] text-sm mb-6 max-w-xs">
+                <p className="text-[#DDB87A] text-sm mb-6 max-w-xs">
                   {search
                     ? `We couldn't find any products matching "${search}". Try a different keyword or browse categories.`
                     : 'No products in this category yet. Check back soon or browse all.'}
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="px-6 py-2.5 bg-[#5D3A1A] text-white rounded-xl text-sm font-semibold hover:bg-[#7A4E28] transition-all shadow-md hover:shadow-[0_4px_16px_rgba(123,28,46,0.3)]"
+                  className="px-6 py-2.5 bg-[#C8860A] text-[#1A0A02] rounded-xl text-sm font-semibold hover:bg-[#E5A020] transition-all shadow-md hover:shadow-[0_4px_16px_rgba(200,134,10,0.4)]"
                 >
                   Browse All Rudraksha
                 </button>
@@ -369,7 +369,7 @@ export default function ProductsPage() {
                     <button
                       onClick={() => { setPage(p => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                       disabled={page === 1}
-                      className="flex items-center gap-1 px-3 py-2 text-xs rounded-lg border border-[#E5D8C8] text-[#4B3420] hover:border-[#5D3A1A] disabled:opacity-40 transition-all"
+                      className="flex items-center gap-1 px-3 py-2 text-xs rounded-lg border border-[#5C3015] text-[#DDB87A] hover:border-[#C8860A] disabled:opacity-40 transition-all"
                     >
                       <ChevronLeft size={13} /> Prev
                     </button>
@@ -389,8 +389,8 @@ export default function ProductsPage() {
                               onClick={() => { setPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                               className={`w-8 h-8 text-xs rounded-lg border transition-all ${
                                 p === page
-                                  ? 'bg-[#5D3A1A] text-white border-[#5D3A1A] shadow-sm'
-                                  : 'border-[#E5D8C8] text-[#4B3420] hover:border-[#5D3A1A]'
+                                  ? 'bg-[#C8860A] text-[#1A0A02] border-[#C8860A] shadow-sm'
+                                  : 'border-[#5C3015] text-[#DDB87A] hover:border-[#C8860A]'
                               }`}
                             >
                               {p}
@@ -401,7 +401,7 @@ export default function ProductsPage() {
                     <button
                       onClick={() => { setPage(p => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                       disabled={page === totalPages}
-                      className="flex items-center gap-1 px-3 py-2 text-xs rounded-lg border border-[#E5D8C8] text-[#4B3420] hover:border-[#5D3A1A] disabled:opacity-40 transition-all"
+                      className="flex items-center gap-1 px-3 py-2 text-xs rounded-lg border border-[#5C3015] text-[#DDB87A] hover:border-[#C8860A] disabled:opacity-40 transition-all"
                     >
                       Next <ChevronRight size={13} />
                     </button>
