@@ -90,7 +90,7 @@ export default function ProductDetailPage() {
 
   const images = Array.isArray(product.images) && product.images.length > 0
     ? product.images
-    : ['https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=600&q=80']
+    : ['/rudraksha-fallback.webp']
 
   const currentMedia = images[imgIdx]
   const isCurrentVideo = isVideoUrl(currentMedia)
@@ -169,7 +169,7 @@ export default function ProductDetailPage() {
                     <video src={currentMedia} autoPlay muted loop playsInline className="w-full h-full object-cover" />
                   ) : (
                     <img src={currentMedia} alt={product.name} className="w-full h-full object-cover"
-                      onError={e => { e.target.src = 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=600&q=80' }} />
+                      onError={e => { e.target.src = '/rudraksha-fallback.webp' }} />
                   )}
                 </motion.div>
               </AnimatePresence>
@@ -197,7 +197,7 @@ export default function ProductDetailPage() {
                       <video src={img} muted playsInline className="w-full h-full object-cover bg-black" />
                     ) : (
                       <img src={img} alt="" className="w-full h-full object-cover"
-                        onError={e => { e.target.src = 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=60&q=60' }} />
+                        onError={e => { e.target.src = '/rudraksha-fallback.webp' }} />
                     )}
                   </button>
                 ))}
@@ -333,7 +333,7 @@ export default function ProductDetailPage() {
                     ) : (
                       <img src={p.images?.[0]} alt={p.name} loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        onError={e => { e.target.src = 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=400&q=80' }} />
+                        onError={e => { e.target.src = '/rudraksha-fallback.webp' }} />
                     )}
                   </div>
                   <div className="p-3">

@@ -8,7 +8,7 @@ import { formatINR } from '../utils/format'
 import toast from 'react-hot-toast'
 
 const isVideo = (url) => url && /\.(mp4|mov|webm|ogg)(\?|$)/i.test(url)
-const FALLBACK_IMG = 'https://images.unsplash.com/photo-1614703012479-0fe5f6a89be0?w=400&q=80'
+const FALLBACK_IMG = '/rudraksha-fallback.webp'
 
 function TagBadges({ tags }) {
   if (!tags?.length) return null

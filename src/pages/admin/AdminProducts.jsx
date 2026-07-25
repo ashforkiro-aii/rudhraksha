@@ -111,7 +111,7 @@ function ImageUploader({ images, onImagesChange, uploading, setUploading }) {
                 />
               ) : (
                 <img src={url} alt="" className="w-20 h-20 object-cover rounded-lg border border-gray-200" loading="lazy"
-                  onError={e => { if (e.target.src !== 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=400&q=80') e.target.src = 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=400&q=80' }} />
+                  onError={e => { if (e.target.src !== '/rudraksha-fallback.webp') e.target.src = '/rudraksha-fallback.webp' }} />
               )}
               <button
                 type="button"
@@ -363,11 +363,11 @@ export default function AdminProducts() {
                         />
                       ) : (
                         <img
-                          src={p.images?.[0] || 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=60&q=60'}
+                          src={p.images?.[0] || '/rudraksha-fallback.webp'}
                           alt=""
                           className="w-10 h-10 object-cover rounded-lg"
                           loading="lazy"
-                          onError={e => { if (e.target.src !== 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=400&q=80') e.target.src = 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=400&q=80' }}
+                          onError={e => { if (e.target.src !== '/rudraksha-fallback.webp') e.target.src = '/rudraksha-fallback.webp' }}
                         />
                       )}
                       <div>

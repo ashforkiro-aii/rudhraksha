@@ -140,7 +140,7 @@ export default function CartPage() {
             {items.map(item => {
               const product = item.products || {}
               const mediaUrl = product.images?.[0]
-              const fallback = 'https://images.unsplash.com/photo-1515562153-702640cf-b037-4b1e-83b0-418397cf1be3?w=200&q=80'
+              const fallback = '/rudraksha-fallback.webp'
               const key = item.id || item.product_id
               const isSelected = selectedIds.has(key)
               return (
